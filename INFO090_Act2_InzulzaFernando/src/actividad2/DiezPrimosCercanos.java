@@ -33,6 +33,7 @@ public class DiezPrimosCercanos {
 				c += 1;
 				//AQUI FALTA CREAR UNA LINEA EN EL ARCHIVO DE SALIDA
 			}
+			System.out.println("WENA JAJA");
 			/*while(c<P){
 			
 				//CREARA PRIMERA LINEA DEL ARCHIVO
