@@ -40,6 +40,7 @@ public class DiezPrimosCercanos {
 				listaOrdenar.add(N);
 			}
 			
+			//
 			while(c<P){
 				if((N-i)>1){
 					if(esPrimo(N-i)) {
