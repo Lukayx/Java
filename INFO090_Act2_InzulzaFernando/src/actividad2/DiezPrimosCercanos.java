@@ -33,7 +33,7 @@ public class DiezPrimosCercanos {
 			//COMPROBACION DE "N"
 			int c=0,i=1;
 			String linea = "";
-			if(esPrimo(N)) {
+			if(esPrimo(N) && N!=1) {
 				c += 1;
 				listaOrdenar.add(N);
 			}
