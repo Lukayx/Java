@@ -51,7 +51,6 @@ public class AccesoArchivosArrayList {
 	public static void escribirArchivo(String ruta, ArrayList<String> lineas) {
 		FileWriter fw;
 		BufferedWriter bw;
-		System.out.println(lineas.get(0));
 		try{
 			fw = new FileWriter(ruta);
 			bw = new BufferedWriter(fw);
