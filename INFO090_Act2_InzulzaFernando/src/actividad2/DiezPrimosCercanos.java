@@ -1,6 +1,7 @@
 package actividad2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DiezPrimosCercanos {
 
@@ -14,8 +15,11 @@ public class DiezPrimosCercanos {
 	}
 	
 	public static void main(String[] args) {
-		ArrayList<String> entrada = 
+		ArrayList<String> entrada = //ALMACENA LINEAS DEL ARCHIVO DE TEXTO EN UN ARRAY
 				AccesoArchivosArrayList.leerArchivo("./data/entrada.txt");
+		ArrayList<String> numPrim = new ArrayList<>(); //CONTENDRA LAS LINEAS DEL ARCHIVO DE SALIDA
+		ArrayList<Integer> listaOrdenar = new ArrayList<>(); //ARRAY DE INT PARA ORDENAR Y LUEGO TRANSFORMAR A STRING
+		
 		for(String s : entrada) {
 			String strNum = s.substring(0,s.indexOf(" "));//RECORTA EL "N" DE LA LINEA COMO STRING
 			int N = Integer.parseInt(strNum);// TRANSFORMA EL "N" A INT 
@@ -28,21 +32,43 @@ public class DiezPrimosCercanos {
 			}
 			
 			//COMPROBACION DE "N"
-			int c=0;
+			int c=0,i=1;
+			String linea = "";
+			
 			if(esPrimo(N)) {
 				c += 1;
-				//AQUI FALTA CREAR UNA LINEA EN EL ARCHIVO DE SALIDA
+				listaOrdenar.add(N);
 			}
-			System.out.println("WENA JAJA");
-			/*while(c<P){
 			
-				//CREARA PRIMERA LINEA DEL ARCHIVO
-			}*/
-			
-			//ArrayList<String> numPrim;
-			//AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",numPrim);
-			
+			while(c<P){
+				if((N-i)>1){
+					if(esPrimo(N-i)) {
+						listaOrdenar.add(N-i);
+						c+=1;
+					}
+				}
+				if(c==P) { break;}
+				if(esPrimo(N+i)){
+					listaOrdenar.add(N+i);
+					c+=1;
+				}
+				i+=1;
+			}
+			Collections.sort(listaOrdenar);
+			for(int j=0;j<listaOrdenar.size();j++){
+				if(j==listaOrdenar.size()-1) {
+					linea = linea + Integer.toString(listaOrdenar.get(j));
+				} else {
+					linea = linea + Integer.toString(listaOrdenar.get(j)) + " ";
+				}
+			}		
+
+			numPrim.add(linea);
+			listaOrdenar.clear();
+
 		}
+
+		AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",numPrim); //CREARA ARCHIVO DE SALIDA
 
 	}
 
