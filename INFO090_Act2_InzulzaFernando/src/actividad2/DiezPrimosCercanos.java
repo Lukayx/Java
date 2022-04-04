@@ -30,16 +30,13 @@ public class DiezPrimosCercanos {
 				System.out.println("ERROR: Los numeros no cumplen con lo indicado");
 				break;
 			}
-			
 			//COMPROBACION DE "N"
 			int c=0,i=1;
 			String linea = "";
-			
 			if(esPrimo(N)) {
 				c += 1;
 				listaOrdenar.add(N);
 			}
-			
 			//
 			while(c<P){
 				if((N-i)>1){
@@ -63,14 +60,10 @@ public class DiezPrimosCercanos {
 					linea = linea + Integer.toString(listaOrdenar.get(j)) + " ";
 				}
 			}		
-
 			numPrim.add(linea);
 			listaOrdenar.clear();
-
 		}
-
 		AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",numPrim); //CREARA ARCHIVO DE SALIDA
-
 	}
 
 }
