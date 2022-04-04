@@ -61,8 +61,9 @@ public class CadenasComprimidas {
 				str="ERROR";
 			}
 			linea.add(str);
+			str = "";
 		}
-		AccesoArchivosArrayList.escribirArchivo("./data/numerosPrimos/salida.txt",linea); //CREARA ARCHIVO DE SALIDA
+		AccesoArchivosArrayList.escribirArchivo("./data/cadenasComprimidas/salida.txt",linea); //CREARA ARCHIVO DE SALIDA
 
 	}
 
