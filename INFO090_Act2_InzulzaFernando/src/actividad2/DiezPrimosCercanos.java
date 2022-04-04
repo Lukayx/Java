@@ -16,7 +16,7 @@ public class DiezPrimosCercanos {
 	
 	public static void main(String[] args) {
 		ArrayList<String> entrada = //ALMACENA LINEAS DEL ARCHIVO DE TEXTO EN UN ARRAY
-				AccesoArchivosArrayList.leerArchivo("./data/entrada.txt");
+				AccesoArchivosArrayList.leerArchivo("./data/numerosPrimos/entrada.txt");
 		ArrayList<String> numPrim = new ArrayList<>(); //CONTENDRA LAS LINEAS DEL ARCHIVO DE SALIDA
 		ArrayList<Integer> listaOrdenar = new ArrayList<>(); //ARRAY DE INT PARA ORDENAR Y LUEGO TRANSFORMAR A STRING
 		
@@ -63,7 +63,7 @@ public class DiezPrimosCercanos {
 			numPrim.add(linea);
 			listaOrdenar.clear();
 		}
-		AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",numPrim); //CREARA ARCHIVO DE SALIDA
+		AccesoArchivosArrayList.escribirArchivo("./data/numerosPrimos/salida.txt",numPrim); //CREARA ARCHIVO DE SALIDA
 	}
 
 }
