@@ -23,6 +23,7 @@ public class CadenasComprimidas {
 				AccesoArchivosArrayList.leerArchivo("./data/cadenasComprimidas/entrada.txt");
 		final String A = "1234567890", B = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String letra,num = "",str = "";
+		ArrayList<String> linea = new ArrayList<>();
 		byte e;
 		for(String s : entrada) {
 			if(s.length()>80){ // COMPRUEBA SI LA CADENA NO SUPERA EL MAXIMO DE CARACTERES
@@ -42,7 +43,7 @@ public class CadenasComprimidas {
 				letra = String.valueOf(s.charAt(i));
 				compruebaError(A,B,letra);
 				
-				if(e==0 && A.contains(letra)) {
+				if(e==0 && A.contains(letra) || e==1 && A.contains(letra)) {
 					num += letra;
 					e = 0;
 				} else if(e==0 && B.contains(letra)) {
@@ -50,18 +51,18 @@ public class CadenasComprimidas {
 						str += letra;
 					}
 					num = "";
+				} else {
+					str += letra;
 				}
+				e = estado(A,B,letra);
 			}
 			
-			System.out.println(str);
-				// | ESTADO SERA 0 SI RECOGE UN NUMERO | ESTADO SERA 1 SI RECOGE UN CARACTER |	
-//				char letra = 'A'; SACA EL CARACTER
-//				int num = 10; SACA LA CANTIDAD DE VECES QUE SE AGREGARA EL CARACTER
-//				for(int j = 0; j<num;j++) { HARA EL PROCESO DE AGREGAR LO ANTERIOR MENCIONADO AL STRING "str"
-//					str = str + letra;
-//				}
-			
+			if(str.length()>80) {
+				str="ERROR";
+			}
+			linea.add(str);
 		}
+		AccesoArchivosArrayList.escribirArchivo("./data/numerosPrimos/salida.txt",linea); //CREARA ARCHIVO DE SALIDA
 
 	}
 
