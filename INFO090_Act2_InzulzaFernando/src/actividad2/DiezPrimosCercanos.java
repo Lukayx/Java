@@ -62,7 +62,6 @@ public class DiezPrimosCercanos {
 			}		
 			numPrim.add(linea);
 			listaOrdenar.clear();
-			
 		}
 		AccesoArchivosArrayList.escribirArchivo("./data/numerosPrimos/salida.txt",numPrim); //CREARA ARCHIVO DE SALIDA
 	}
