@@ -28,7 +28,7 @@ public class DiezPrimosCercanos {
 			
 			if(N<1 || P<1 || P>10000) { //COMPRUEBA SI LOS NUMEROS ESTAN BIEN
 				System.out.println("ERROR: Los numeros no cumplen con lo indicado");
-				break;
+				System.exit(0);
 			}
 			//COMPROBACION DE "N"
 			int c=0,i=1;
@@ -62,6 +62,7 @@ public class DiezPrimosCercanos {
 			}		
 			numPrim.add(linea);
 			listaOrdenar.clear();
+			
 		}
 		AccesoArchivosArrayList.escribirArchivo("./data/numerosPrimos/salida.txt",numPrim); //CREARA ARCHIVO DE SALIDA
 	}
