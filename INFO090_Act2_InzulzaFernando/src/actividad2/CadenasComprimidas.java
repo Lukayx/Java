@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CadenasComprimidas {
 
 	public static boolean compruebaError(String A,String B,String letra) {
-		if(A.contains(letra) != true && B.contains(letra) != true) { //SI NO ESTA EN NINGUNA DE LOS 2 ENTONCES FINALIZA EL CODIGO
+		if(A.contains(letra) != true && B.contains(letra) != true) { //SI NO ESTA EN NINGUNA DE LOS 2 ENTONCES RETORNA UN BOOLEANO
 			return true;
 		}
 		return false;
@@ -31,7 +31,7 @@ public class CadenasComprimidas {
 			} else {
 				letra = String.valueOf(s.charAt(0)); // RECOGE EL CARACTER EN LA POSICION INDICADA
 				if(compruebaError(A,B,letra)) {break;}
-				e = estado(A,B,letra);
+				e = estado(A,B,letra); // |1 SI ESTA EN B | 0 SI ESTA EN A
 				if(A.contains(letra)) {
 					num += letra;
 				} else {
@@ -40,7 +40,10 @@ public class CadenasComprimidas {
 				for(int i=1;i<s.length();i++) {
 					letra = String.valueOf(s.charAt(i));
 					
-					if(compruebaError(A,B,letra)){break;}
+					if(compruebaError(A,B,letra)){
+						str="ERROR";
+						break;
+					}
 					
 					if(e==0 && A.contains(letra) || e==1 && A.contains(letra)) {
 						num += letra;
@@ -54,14 +57,14 @@ public class CadenasComprimidas {
 						str += letra;
 					}
 					e = estado(A,B,letra);
+					
+					// PARA ARREGLARLO HAZ QUE SI "E" ES 0 Y CUANDO SALE NO ES 1 PUES ESTA MALO Y SALTA ERROR 
 				}
-				if(compruebaError(A,B,letra)) {str="ERROR";}
+
+			}
 				linea.add(str);
 				str = "";
-			}
-		}
-			
-			
+		}			
 		AccesoArchivosArrayList.escribirArchivo("./data/cadenasComprimidas/salida.txt",linea); //CREARA ARCHIVO DE SALIDA
 
 	}
