@@ -1,4 +1,4 @@
-package cl.uach.info0909.semana03;
+package cl.uach.info090.semana03;
 
 public class Clase1 {
 	
