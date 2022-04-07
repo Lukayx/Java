@@ -25,18 +25,36 @@ public class Message {
 		state = 0;
 	}
 	
-	public int send(){
-		return 1;
+	public boolean isSent() {
+		return state > 0;
 	}
 	
-	public int receive(){
-		return 2;
+	public boolean isReceived(){
+		return state > 1;
 	}
 	
-	public int read(){
-		return 3;
+	public boolean isRead(){
+		return state > 2;
 	}
 
+	public void send(){
+		if(state==0) {
+			state = 1;
+			date = new Date();
+		}
+	}
+	
+	public void receive() {
+		if(isSent() && !isReceived()) {
+			state = 2;
+		}
+	}
+	
+	public void read() {
+		if(isReceived() && isRead()) {
+			state = 3;
+		}
+	}
 	public String getText() {
 		return text;
 	}
@@ -61,7 +79,7 @@ public class Message {
 		return id;
 	}
 
-	public int getMsgCount() {
+	public static int getMsgCount() {
 		return msgCount;
 	}
 	
