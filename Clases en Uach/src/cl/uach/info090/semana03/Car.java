@@ -7,27 +7,42 @@ package cl.uach.info090.semana03;
 	}*/
 
 public class Car {
-	private final double MILES_PER_GALLON = 10;
-	private final double TANK_CAPACITY = 100;
+	private double tankCapacity = 100;
+	private double milesPerGallon = 15;
 	private double miles = 0.0;
 	private double gas = 0.0;
 	
+	public Car(double tankCapacity, double milesPerGallon) {
+		if(milesPerGallon >0)
+			this.milesPerGallon = milesPerGallon;
+		else
+			this.milesPerGallon = 15;
+		
+		if(tankCapacity > 0)
+			this.tankCapacity = tankCapacity;
+		else 
+			this.tankCapacity = 20;
+		
+		gas = 0.0;
+		miles = 0.0;
+		
+	}
+
+	
 	public void putGas(double gallons) {
-		if((gas+gallons)<=TANK_CAPACITY) {
-			gas = gas + gallons;
-		} else {
-			gas = TANK_CAPACITY;
-		}
+		gas += gallons;
+		if(gas>tankCapacity)gas=tankCapacity;
+		if(gas < 0);
 	}
 	public void drive(double miles) {
 		this.miles = miles;
 		if(miles < 0) return;
-		if(miles > gas*MILES_PER_GALLON) {
+		if(miles > gas*tankCapacity) {
 				gas=0;
-				this.miles += gas*MILES_PER_GALLON;
+				this.miles += gas*tankCapacity;
 		} else {
 			this.miles += miles;
-			gas -= miles/MILES_PER_GALLON;
+			gas -= miles/tankCapacity;
 		}
 	}
 
