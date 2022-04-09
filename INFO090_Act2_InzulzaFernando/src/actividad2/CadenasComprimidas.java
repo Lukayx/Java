@@ -55,9 +55,7 @@ public class CadenasComprimidas {
 							str += letra;
 						}
 						num = ""; // LA CANTIDAD DE VECES QUE SE REPETIA UN CARACTER SE REINICIA
-					} else {
-						str += letra;
-					}
+					} else {str += letra;}
 					e = estado(A,B,letra); // EL ESTADO SE ACTUALIZA AL FINAL
 				}
 				if(e==false) { str="ERROR";	} // HAY FACTOR DE MULTIPLICACION PERO NO LETRA A MULTIPLICAR
@@ -65,7 +63,7 @@ public class CadenasComprimidas {
 				linea.add(str);
 				str = "";
 				num = "";
-		}			
+		}
 		AccesoArchivosArrayList.escribirArchivo("./data/cadenasComprimidas/salida.txt",linea); // CREARA ARCHIVO DE SALIDA
 	}
 }
