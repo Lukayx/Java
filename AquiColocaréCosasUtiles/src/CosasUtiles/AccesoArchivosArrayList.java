@@ -1,4 +1,4 @@
-package Actividad3;
+package CosasUtiles;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
