@@ -14,7 +14,7 @@ public class Buscaminas {
 			System.out.println();
 		}
 	}
-	
+	//perito JAJAJAJA
 	public static void main(String[] args) {
 		ArrayList<String> entrada = AccesoArchivosArrayList.leerArchivo("./data/entrada.txt");
 		ArrayList<String> linea = new ArrayList<>();
