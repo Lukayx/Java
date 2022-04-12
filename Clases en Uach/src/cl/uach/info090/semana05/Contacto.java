@@ -3,7 +3,6 @@ package cl.uach.info090.semana05;
 public class Contacto {
 	private String nombre;
 	private String fono;
-	
 	public Contacto(String nombre,String fono){
 		this.nombre = nombre;
 		this.fono = fono;
