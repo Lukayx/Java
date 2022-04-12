@@ -25,7 +25,7 @@ public class Campo {
 		return i<N_fil && i>=0 && j>=0 && j<N_col && original[i][j]=='*';
 	}
 	
-	public int compruebaMinas(int i,int j) {
+	public char compruebaMinas(int i,int j) {
 		int c = 0;
 		if(compruebaIndices(i-1,j-1)){c++;}
 		if(compruebaIndices(i-1,j  )){c++;}
@@ -35,7 +35,8 @@ public class Campo {
 		if(compruebaIndices(i+1,j-1)){c++;}
 		if(compruebaIndices(i+1,j  )){c++;}
 		if(compruebaIndices(i+1,j+1)){c++;}
-		return c;
+		String n = Integer.toString(c);
+		return n.charAt(0);
 	}
 	
 	public String campoListo(){
@@ -43,8 +44,9 @@ public class Campo {
 			for (int j = 0; j < N_col; j++) {
 				if(original[i][j]=='*') {
 					resultado[i][j]='*';
+					
 				} else {
-					resultado[i][j] = (char)compruebaMinas(i,j);
+					resultado[i][j] = compruebaMinas(i,j);
 				}
 			}
 		}

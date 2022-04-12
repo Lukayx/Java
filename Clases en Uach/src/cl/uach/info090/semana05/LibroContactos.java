@@ -25,4 +25,12 @@ public class LibroContactos {
 	public ArrayList<Contacto> getContactos() {
 		return contactos;
 	}
+	
+//	public String toString() {
+//		String s = "";
+//		for (int i = 0; i < ; i++) {
+//			
+//		}
+//	}
+	
 }
