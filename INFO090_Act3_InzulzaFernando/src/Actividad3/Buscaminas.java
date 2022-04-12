@@ -20,7 +20,7 @@ public class Buscaminas {
 				if(numeros.contains(strM)==false || numeros.contains(strM)==false) { System.exit(0);}
 				m = Integer.parseInt(strM);
 				n = Integer.parseInt(strN);
-				if(m > 100 || m <= 0 || n <= 0 || n>100) { System.exit(0);} 
+				if(m > 100 || m < 0 || n < 0 || n>100) { System.exit(0);} 
 				if(n == 0 && m == 0) {
 					AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",linea);//CREA ARCHIVO DE SALIDA
 					System.exit(0);
