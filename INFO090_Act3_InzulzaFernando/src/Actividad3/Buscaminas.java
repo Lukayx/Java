@@ -22,7 +22,8 @@ public class Buscaminas {
 				n = Integer.parseInt(strN);
 				if(m > 100 || m <= 0 || n <= 0 || n>100) { System.exit(0);} 
 				if(n == 0 && m == 0) {
-					AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",linea); //CREA ARCHIVO DE SALIDA
+					AccesoArchivosArrayList.escribirArchivo("./data/salida.txt",linea);//CREA ARCHIVO DE SALIDA
+					System.exit(0);
 				}
 				ingresoNumero = false;
 				campos++;
