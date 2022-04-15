@@ -12,7 +12,7 @@ public class Campo {
 		original = new char[m][n];
 		resultado = new char[m][n];
 		for(String s : lineas) {
-			for (int j = 0; j < s.length(); j++) {
+			for(int j = 0; j < s.length(); j++) {
 				original[i][j] = s.charAt(j);		
 			}
 			i++;
@@ -40,11 +40,10 @@ public class Campo {
 	}
 	
 	public String campoListo(){
-		for (int i = 0; i < N_fil; i++) {
+		for(int i = 0; i < N_fil; i++) {
 			for (int j = 0; j < N_col; j++) {
 				if(original[i][j]=='*') {
 					resultado[i][j]='*';
-					
 				} else {
 					resultado[i][j] = compruebaMinas(i,j);
 				}
@@ -54,7 +53,7 @@ public class Campo {
 		String str="";
 		for (int i = 0; i < N_fil; i++) {
 			for (int j = 0; j < N_col; j++) {
-				str+=resultado[i][j];
+				str += resultado[i][j];
 			}
 			str+="\n";
 		}
