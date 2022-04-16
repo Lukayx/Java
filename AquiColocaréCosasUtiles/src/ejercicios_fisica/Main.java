@@ -17,6 +17,7 @@ public class Main {
 		Vector v5 = new Vector(Fisica.productoCruz(v1, v2));
 		v5.imprimeVector();
 		System.out.println("El producto punto de ambos vectores es: "+Fisica.productoPunto(v1, v2));
+		System.out.println("El producto punto del primer vector con el del producto cruz es: "+Fisica.productoPunto(v5, v1));
 		//System.out.println("Producto punto con Modulos y Angulo entre vectores"+Fisica.productoPuntoAngulo(v1, v2,49.40));
 		System.out.println("El angulo entre los vectores es: "+Fisica.anguloEntreVectores(v1, v2));
 	}

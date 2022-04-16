@@ -66,6 +66,21 @@ public class Fisica {
 		return Math.round(n*100.0)/100.0;
 	}
 	
+	/**
+	* Si V1 = (X1,Y1,Z1), V2 = (X2,Y2,Z2) y Alpha entonces: 
+	* 
+	* 
+	* 
+	* @param v1 Primer Vector
+	* @param v2 Segundo Vector
+	* @param alpha Angulo Entre Vectores
+	* @return N = | V1 | * | V2 | * Sin(Alpha)
+	*/
+	public static double moduloProductoCruz(Vector v1, Vector v2, double alpha) {
+		double n = v1.moduloVector()*v2.moduloVector()*Math.sin(alpha);
+		return Math.round(n*100.0)/100.0;
+	}
+	
 	public static double[] productoCruz(Vector v1, Vector v2) {
 		double A[] = v1.getVector(), B[] = v2.getVector(), V[] = new double[3];
 		V[0]=A[1]*B[2]+B[1]*A[2];
