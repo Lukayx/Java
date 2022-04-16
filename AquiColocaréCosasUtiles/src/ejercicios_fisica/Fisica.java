@@ -77,5 +77,13 @@ public class Fisica {
 		return V;
 	}
 	
-	
+	public static double anguloEntreVectores(Vector v1, Vector v2) {
+		double A[] = v1.getVector(), B[] = v2.getVector(), V[] = new double[3];
+		double n=0,numerador,denominador,cos,angulo;
+		for (int i = 0; i < 3; i++) n += A[i]*B[i];
+		numerador = n; denominador = v1.moduloVector()*v2.moduloVector();
+		cos = numerador/denominador;
+		angulo = Math.acos(cos)/Math.PI*180;
+		return Math.round(angulo*100.0)/100.0;
+	}
 }
