@@ -52,13 +52,14 @@ public class Fisica {
 	}
 	
 	/**
-	* Si V1 = (x1,y1,z1) y V2 = (x2,y2,z2) entonces retornara N
+	* Si V1 = (X1,Y1,Z1), V2 = (X2,Y2,Z2) y Alpha entonces: 
 	* 
 	* 
 	* 
 	* @param v1 Primer Vector
 	* @param v2 Segundo Vector
-	* @return N = (x1 * x2 + y1 * y2 + z1 * z2)
+	* @param alpha Angulo Entre Vectores
+	* @return N = | V1 | * | V2 | * Cos(Alpha)
 	*/
 	public static double productoPuntoAngulo(Vector v1, Vector v2, double alpha) {
 		double n = v1.moduloVector()*v2.moduloVector()*Math.cos(alpha);

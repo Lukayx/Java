@@ -3,9 +3,9 @@ package ejercicios_fisica;
 public class Main {
 
 	public static void main(String[] args) {
-		Vector v1 = new Vector(0,0,-0.375);
+		Vector v1 = new Vector(5,-3,9);
 		v1.imprimeVector();
-		Vector v2 = new Vector(0.82,0.21,0);
+		Vector v2 = new Vector(6,2,1);
 		v2.imprimeVector();
 		Vector v3 = new Vector(Fisica.sumaVectores(v1, v2));
 		System.out.println("La suma de ambos vectores es: ");
