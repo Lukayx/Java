@@ -21,6 +21,14 @@ public class Main {
 		System.out.print("RESTA VECTOR 1 Y 2: ");
 		restaVector1Y2.imprimeVector();
 		
+		Vector unitarioV1 = new Vector(Fisica.encuentraVectorUnitario(v1, true));
+		System.out.print("VECTOR UNITARIO DE V1: ");
+		unitarioV1.imprimeVector();
+		
+		Vector unitarioV2 = new Vector(Fisica.encuentraVectorUnitario(v2, true));
+		System.out.print("VECTOR UNITARIO DE V2: ");
+		unitarioV2.imprimeVector();
+		
 		v2.escalarDividiendoVector(0);
 		
 		System.out.println("PRODUCTO PUNTO VECTOR 1 Y 2: "+Fisica.productoPunto(v1, v2, false)+"\n");
@@ -32,15 +40,6 @@ public class Main {
 		System.out.print("PRODUCTO CRUZ VECTOR 1 Y 2: ");
 		productoCruzV1YV2.imprimeVector();
 		
-		System.out.println("EL MODULO DEL PRODUCTO CRUZ ENTRE EL VECTOR 1 Y 2: "+Fisica.moduloProductoCruz(v1,v2,alpha,true)+"\n");		
-		
-		Vector unitarioV1 = new Vector(Fisica.encuentraVectorUnitario(v1, true));
-		System.out.print("VECTOR UNITARIO DE V1: ");
-		unitarioV1.imprimeVector();
-		
-		Vector unitarioV2 = new Vector(Fisica.encuentraVectorUnitario(v2, true));
-		System.out.print("VECTOR UNITARIO DE V2: ");
-		unitarioV2.imprimeVector();
-		
+		System.out.println("EL MODULO DEL PRODUCTO CRUZ ENTRE EL VECTOR 1 Y 2: "+Fisica.moduloProductoCruz(v1,v2,alpha,true)+"\n");				
 	}
 }
