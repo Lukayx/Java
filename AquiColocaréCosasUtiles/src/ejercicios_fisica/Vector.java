@@ -21,7 +21,7 @@ public class Vector {
 		return vector;
 	}
 	public void imprimeVector() {
-		System.out.println("El vector es < "+vector[0]+", "+vector[1]+", "+vector[2]+" >");
+		System.out.println("El vector es < "+vector[0]+", "+vector[1]+", "+vector[2]+" >\n");
 	}
 	
 	public void limpiaVector() {
@@ -46,5 +46,14 @@ public class Vector {
 		for (int i = 0; i < vector.length; i++) {
 			vector[i]*=e;
 		}
+	}
+	
+	public void escalarDividiendoVector(double e) {
+		if(e != 0){
+			for (int i = 0; i < vector.length; i++) {
+				vector[i]/=e;
+			}
+		} else System.out.println("¡ERROR! ¡NO SE PUEDE DIVIDIR POR 0!\n");
+		
 	}
 }

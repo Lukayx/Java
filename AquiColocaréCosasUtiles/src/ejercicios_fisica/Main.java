@@ -3,22 +3,40 @@ package ejercicios_fisica;
 public class Main {
 
 	public static void main(String[] args) {
+		System.out.print("VECTOR 1: ");
 		Vector v1 = new Vector(5,-3);
 		v1.imprimeVector();
+		System.out.println("EL MODULO DEL VECTOR 1 ES: "+v1.moduloVector()+"\n");
+		
 		Vector v2 = new Vector(6,2);
+		System.out.print("VECTOR 2: ");
 		v2.imprimeVector();
-		Vector v3 = new Vector(Fisica.sumaVectores(v1, v2));
-		System.out.println("La suma de ambos vectores es: ");
-		v3.imprimeVector();
-		Vector v4 = new Vector(Fisica.restaVectores(v1, v2));
-		System.out.println("La resta de ambos vectores es: ");
-		v4.imprimeVector();
-		System.out.println("El producto cruz de ambos vectores es: ");
-		Vector v5 = new Vector(Fisica.productoCruz(v1, v2));
-		v5.imprimeVector();
-		System.out.println("El producto punto de ambos vectores es: "+Fisica.productoPunto(v1, v2));
-		System.out.println("El producto punto del primer vector con el del producto cruz es: "+Fisica.productoPunto(v5, v1));
-		//System.out.println("Producto punto con Modulos y Angulo entre vectores"+Fisica.productoPuntoAngulo(v1, v2,49.40));
-		System.out.println("El angulo entre los vectores es: "+Fisica.anguloEntreVectores(v1, v2));
+		System.out.println("EL MODULO DEL VECTOR 2 ES: "+v2.moduloVector()+"\n");
+		
+		Vector sumaVector1Y2 = new Vector(Fisica.sumaVectores(v1, v2, true));
+		System.out.print("SUMA VECTOR 1 Y 2: ");
+		sumaVector1Y2.imprimeVector();
+		
+		Vector restaVector1Y2 = new Vector(Fisica.restaVectores(v1, v2, false));
+		System.out.print("RESTA VECTOR 1 Y 2: ");
+		restaVector1Y2.imprimeVector();
+		
+		v2.escalarDividiendoVector(0);
+		
+		System.out.println("PRODUCTO PUNTO VECTOR 1 Y 2: "+Fisica.productoPunto(v1, v2, false)+"\n");
+		
+		Vector productoCruzV1YV2 = new Vector(Fisica.productoCruz(v1, v2, false));
+		System.out.print("PRODUCTO CRUZ VECTOR 1 Y 2: ");
+		productoCruzV1YV2.imprimeVector();
+		
+		System.out.println("EL ANGULO ENTRE LOS VECTORES 1 Y 2 ES: "+Fisica.anguloEntreVectores(v1, v2, false)+"\n");
+		
+		Vector unitarioV1 = new Vector(Fisica.encuentraVectorUnitario(v1, true));
+		System.out.print("VECTOR UNITARIO DE V1: ");
+		unitarioV1.imprimeVector();
+		
+		Vector unitarioV2 = new Vector(Fisica.encuentraVectorUnitario(v2, true));
+		System.out.print("VECTOR UNITARIO DE V2: ");
+		unitarioV2.imprimeVector();
 	}
 }
