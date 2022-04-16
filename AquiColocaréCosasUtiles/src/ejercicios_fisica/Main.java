@@ -3,9 +3,9 @@ package ejercicios_fisica;
 public class Main {
 
 	public static void main(String[] args) {
-		Vector v1 = new Vector(3.3  , 1.1, 8.5);
+		Vector v1 = new Vector(0,0,-0.375);
 		v1.imprimeVector();
-		Vector v2 = new Vector(5.7  , 2.7, 2.5);
+		Vector v2 = new Vector(0.82,0.21,0);
 		v2.imprimeVector();
 		Vector v3 = new Vector(Fisica.sumaVectores(v1, v2));
 		System.out.println("La suma de ambos vectores es: ");
@@ -13,6 +13,10 @@ public class Main {
 		Vector v4 = new Vector(Fisica.restaVectores(v1, v2));
 		System.out.println("La resta de ambos vectores es: ");
 		v4.imprimeVector();
+		System.out.println("El producto cruz de ambos vectores es: ");
+		Vector v5 = new Vector(Fisica.productoCruz(v1, v2));
+		v5.imprimeVector();
+		System.out.println("El producto punto de ambos vectores es: "+Fisica.productoPunto(v1, v2));
+		//System.out.println("Producto punto con Modulos y Angulo entre vectores"+Fisica.productoPuntoAngulo(v1, v2,49.40));
 	}
-
 }
