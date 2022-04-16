@@ -75,23 +75,6 @@ public class Fisica {
 	}
 	
 	/**
-	* Si V1 = (X1,Y1,Z1), V2 = (X2,Y2,Z2) y Alpha entonces: 
-	* 
-	* 
-	* 
-	* @param v1 Primer Vector
-	* @param v2 Segundo Vector
-	* @param alpha Angulo Entre Vectores
-	* @param x True: Se redondea | False: No se redondea
-	* @return N = | V1 | * | V2 | * Sin(Alpha)
-	*/
-	public static double moduloProductoCruz(Vector v1, Vector v2, double alpha,boolean x) {
-		double n = v1.moduloVector()*v2.moduloVector()*Math.sin(alpha);
-		if(x) n = Math.round(n*100.0)/100.0;
-		return n;
-	}
-	
-	/**
 	* Si A = (ax,ay,az), B = (bx,by,bz) entonces retornara N
  	* 
 	* @param v1 Primer Vector
@@ -110,6 +93,24 @@ public class Fisica {
 			V[2] = Math.round(V[2]*100.0)/100.0;
 		}	
 		return V;
+	}
+	
+	/**
+	* Si V1 = (X1,Y1,Z1), V2 = (X2,Y2,Z2) y Alpha.
+	* 
+	* Es importante hacer la operacion de pasar a radianes el alpha ya que el SENO de Java funciona en RAD
+	* 
+	* @param v1 Primer Vector
+	* @param v2 Segundo Vector
+	* @param alpha Angulo Entre Vectores (Grados)
+	* @param x True: Se redondea | False: No se redondea
+	* @return N = | V1 | * | V2 | * Sin(Alpha)
+	*/
+	public static double moduloProductoCruz(Vector v1, Vector v2, double alpha,boolean x) {
+		double alphaEnRAD = alpha/180*Math.PI; //
+		double n = v1.moduloVector()*v2.moduloVector()*Math.sin(alphaEnRAD);
+		if(x) n = Math.round(n*100.0)/100.0;
+		return n;
 	}
 	
 	/**
@@ -133,8 +134,7 @@ public class Fisica {
 	}
 	
 	/**
-	* 
-	* 
+	* Recibe el vector y luego es dividido (cada uno de sus componentes) con su modulo
  	* 
 	* @param v1 Primer Vector
 	* @param x True: Se redondea | False: No se redondea

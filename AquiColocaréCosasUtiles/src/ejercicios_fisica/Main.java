@@ -25,11 +25,14 @@ public class Main {
 		
 		System.out.println("PRODUCTO PUNTO VECTOR 1 Y 2: "+Fisica.productoPunto(v1, v2, false)+"\n");
 		
+		double alpha = Fisica.anguloEntreVectores(v1, v2, false);
+		System.out.println("EL ANGULO ENTRE LOS VECTORES 1 Y 2 ES: "+alpha+"\n");
+		
 		Vector productoCruzV1YV2 = new Vector(Fisica.productoCruz(v1, v2, false));
 		System.out.print("PRODUCTO CRUZ VECTOR 1 Y 2: ");
 		productoCruzV1YV2.imprimeVector();
 		
-		System.out.println("EL ANGULO ENTRE LOS VECTORES 1 Y 2 ES: "+Fisica.anguloEntreVectores(v1, v2, false)+"\n");
+		System.out.println("EL MODULO DEL PRODUCTO CRUZ ENTRE EL VECTOR 1 Y 2: "+Fisica.moduloProductoCruz(v1,v2,alpha,true)+"\n");		
 		
 		Vector unitarioV1 = new Vector(Fisica.encuentraVectorUnitario(v1, true));
 		System.out.print("VECTOR UNITARIO DE V1: ");
@@ -38,5 +41,6 @@ public class Main {
 		Vector unitarioV2 = new Vector(Fisica.encuentraVectorUnitario(v2, true));
 		System.out.print("VECTOR UNITARIO DE V2: ");
 		unitarioV2.imprimeVector();
+		
 	}
 }
