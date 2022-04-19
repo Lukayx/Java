@@ -1,4 +1,4 @@
-package polimorfismo;
+package Herencias;
 
 public class Padre {
 	public void saludar() {
