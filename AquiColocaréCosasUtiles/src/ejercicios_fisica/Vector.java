@@ -1,5 +1,13 @@
 package ejercicios_fisica;
-
+/**
+ * Esta clase hace referencia a los vectores en Fisica: Mecanica. 
+ * <p>
+ * Se pueden realizar las operaciones correspondientes a un unico vector, también hay metodos para
+ * "Limpiar" el Vector, Mostrar en pantalla o incluso Redefinirlo
+ * 
+ * @author Fernando Inzulza
+ *
+ */
 public class Vector {
 	private double vector[] = new double[3];
 	

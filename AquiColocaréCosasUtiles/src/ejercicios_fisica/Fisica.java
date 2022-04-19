@@ -1,5 +1,20 @@
 package ejercicios_fisica;
-
+/**
+ * Esta clase llamada {@code Fisica} me permitirá realizar varias <b>operaciones con vectores</b> que 
+ * realizariamos normalmente en clases.
+ * <p>
+ * Algunos ejemplos de estos serían: 
+ * <li>Producto Punto
+ * <li>Producto Cruz
+ * <li>Operaciones basicas en Vectores
+ * <li>Vector Unitario
+ * <li>Y Angulo entre Vectores
+ * <p>
+ * Todos estos metodos funcionaran <b>SOLO</b> con objetos de la <b>Clase Vector</b>
+ * 
+ * @author Fernando Inzulza
+ *
+ */
 public class Fisica {
 	/**
 	* Sumará el Primer Vector con el Segundo Vector y devolverá otro Vector 
@@ -115,6 +130,7 @@ public class Fisica {
 	
 	/**
 	* CosDelAngulo = (Producto punto de ambos vectores) dividido por (Modulo de ambos vectores multiplicandose)
+	* <p>
 	* Despues se saca ArcoCoseno de CosDelAngulo y después se transforma a grados *180 y /PI
 	* 
  	* 
