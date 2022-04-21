@@ -15,7 +15,7 @@ package ejercicios_fisica;
  * @author Fernando Inzulza
  *
  */
-public class Fisica {
+public final class Fisica {
 	/**
 	* Sumará el Primer Vector con el Segundo Vector y devolverá otro Vector 
 	* @param v1 Primer Vector
