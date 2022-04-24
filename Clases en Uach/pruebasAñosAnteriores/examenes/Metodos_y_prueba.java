@@ -1,7 +1,5 @@
 package examenes;
 
-import java.util.Random;
-
 public class Metodos_y_prueba {
 	
 	public class Metodos{
@@ -13,7 +11,7 @@ public class Metodos_y_prueba {
 			return arreglo;
 		}
 		
-		public static String String_ArrayChar(char arreglo[]) {
+		public static String ArrayChar_String(char arreglo[]) {
 			String cadena = "";
 			for (int i = 0; i < arreglo.length; i++) {
 				cadena += arreglo[i];
@@ -31,10 +29,10 @@ public class Metodos_y_prueba {
 		public static boolean compruebaRepeticion(int arreglo[]) { // comprueba si esta ordenada de menor a mayor
 			for (int i = 0; i < arreglo.length-1; i++) {
 				for (int j = i+1; j < arreglo.length; j++) {
-					if(arreglo[i]==arreglo[j]) return false;
+					if(arreglo[i]==arreglo[j]) return true;
 				}
 			}
-			return true;
+			return false;
 		}
 		
 		public static int[] concatenarArreglos(int A1[], int A2[]) {
@@ -46,7 +44,7 @@ public class Metodos_y_prueba {
 					k++;
 				} else {
 					X[i]=A2[j];
-					j++;
+					j++; 
 				}
 			}
 			return X;
@@ -63,18 +61,58 @@ public class Metodos_y_prueba {
 				aux = array[i];
 				array[i] = array[r];
 				array[r] = aux;
-				System.out.println("indice: "+i+"     Y el random:"+r );
 			}
 			return array;
 		}
 	}
 
 	public static void main(String[] args) {
+		
+		System.out.println("Arreglo ordenado: ");
 		String cadena[] = {"Perro","Gato","Conejo","Loro","Toro","Serpiente","Leon"};
-		cadena = Metodos.desordenaArreglo(cadena);
 		for (int i = 0; i < cadena.length; i++) {
 			System.out.println("Indice "+i+":  "+cadena[i]);
 		}
+		cadena = Metodos.desordenaArreglo(cadena);
+		System.out.println("Arreglo desordenado: ");
+		for (int i = 0; i < cadena.length; i++) {
+			System.out.println("Indice "+i+":  "+cadena[i]);
+		}
+		
+		System.out.println("------------------------------------------");
+		System.out.println("Concatena 2 arreglos: ");
+		int A00[] = {5,2,67,2,8,9,2,89,6,0}, A01[] = {72,4,5,1,0};
+		int X[] = Metodos.concatenarArreglos(A00, A01);
+		for (int i = 0; i < X.length; i++) {
+			System.out.println("Indice "+i+":  "+X[i]);
+		}
+		
+		System.out.println("------------------------------------------");
+	
+		int A[] = {1,2,34,45,6,7,3,8,1,9,2};
+		System.out.println("Comprueba repeticion: "+Metodos.compruebaRepeticion(A));
+		
+		System.out.println("------------------------------------------");
+		
+		int A1[] = {1,2,3,4,5,6,7,8,9};
+		System.out.println("Comprueba arreglo ordenado menor a mayor: "+Metodos.compruebaArreglo(A1));
+		int A2[] = {1,2,3,4,1,6,7,8,7};
+		System.out.println("Comprueba arreglo no ordenado: "+Metodos.compruebaArreglo(A2));
+		
+		System.out.println("------------------------------------------");
+		
+		char B[] = {'H','o','l','a','s',' ','c','o','m','o',' ','e','s','t','a','s'};
+		String txt = Metodos.ArrayChar_String(B);
+		System.out.println("A partir de char[]: "+txt);
+		
+		System.out.println("------------------------------------------");
+		
+		char array[] = Metodos.String_ArrayChar(txt);
+		System.out.print("A partir de String: ");
+		for (char c : array) {
+			System.out.print(c);
+		}
+		
 	}
 
 }
