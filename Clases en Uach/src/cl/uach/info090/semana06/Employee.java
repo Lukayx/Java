@@ -2,9 +2,10 @@ package cl.uach.info090.semana06;
 
 public class Employee extends Person{ //EMPLOYEE (EMPLEADO)
 	private double salary;
+	
 	/*Implicit super constructor Person() is undefined for default constructor. Must define an explicit constructor 
 	 * SI LA SUPER CLASE NO TIENE CONSTRUCTOR POR DEFECTO ENTONCES JAVA NO SE ATREVE A AGRAGARLE UN CONSTRUCTOR
-	 * POR DEFECTO A ESTA SUBCLASE YA QUE ESTÁ MAL */
+	 * POR DEFECTO A ESTA SUBCLASE YA QUE PODRÍA CAUSAR ERRORES NO DESEADOS */
 
 	/*public Employee() {
 		super(""); LLAMANDO AL CONSTRUCTOR DE LA CLASE PERSON, SOLUCIONA EL ERROR PERO NO ES LO IDEAL PORQUE LOS
@@ -15,6 +16,7 @@ public class Employee extends Person{ //EMPLOYEE (EMPLEADO)
 		super(name);
 		setSalary(salary);
 	}
+	
 	public double getSalary() {
 		return salary;
 	}
@@ -41,6 +43,7 @@ public class Employee extends Person{ //EMPLOYEE (EMPLEADO)
 	public String toString() {
 		return super.getName();
 	}
+	
 	public void introduceMyself() {
 		System.out.println("Mi nombre es " + getName() + " y mi salario es " + getSalary());
 	}
