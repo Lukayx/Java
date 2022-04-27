@@ -26,7 +26,7 @@ public class Metodos_y_prueba {
 			return true;
 		}
 		
-		public static boolean compruebaRepeticion(int arreglo[]) { // comprueba si esta ordenada de menor a mayor
+		public static boolean compruebaRepeticion(int arreglo[]) { // comprueba si hay elementos repetidos
 			for (int i = 0; i < arreglo.length-1; i++) {
 				for (int j = i+1; j < arreglo.length; j++) {
 					if(arreglo[i]==arreglo[j]) return true;
