@@ -7,5 +7,4 @@ public class TestBrowser {
 		Browser obj = new Browser(new ConnectionWifi());
 		obj.loadPage("blablabla");
 	}
-
 }
