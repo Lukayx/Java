@@ -40,7 +40,7 @@ public class Cuadrado {
 				key = arreglo[i];
 				j = i - 1;
 				while(j>=0) {
-					if(arreglo[j].comparar(key) == 1 || arreglo[j].comparar(key)==0) {
+					if(arreglo[j].comparar(key) == 1) {
 						aux = arreglo[j+1];
 						arreglo[j+1] = arreglo[j];
 						arreglo[j] = aux;
