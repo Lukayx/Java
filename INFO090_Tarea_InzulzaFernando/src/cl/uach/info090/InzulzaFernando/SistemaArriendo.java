@@ -8,7 +8,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private static SistemaArriendo sistema = new SistemaArriendo();
 	
 	private SistemaArriendo() {
-		super("sistema buenarda");
+		super("Ventana Genial");
 		setBounds(100, 100, 400, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(true);
