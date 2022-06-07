@@ -6,17 +6,16 @@ public class FolderNavigation {
 
 	public static void main(String[] args) {
 		File[] files = new File(".").listFiles();
-		listAllfiles(files);
-
+		listAllfiles(files,"* ");
 	}
 	
-	public static void listAllfiles(File[] files) {
+	public static void listAllfiles(File[] files, String t) {
 	    for (File file : files) {
 	        if (file.isDirectory()) {
-	            System.out.println("Directory: " + file.getName());
-	            listAllfiles(file.listFiles()); 
+	            System.out.println(t+"Directory: " + file.getName());
+	            listAllfiles(file.listFiles(),t+"   "); 
 	        } else {
-	            System.out.println("File: " + file.getName());
+	            System.out.println(t+"File: " + file.getName());
 	        }
 	    }
 	}
