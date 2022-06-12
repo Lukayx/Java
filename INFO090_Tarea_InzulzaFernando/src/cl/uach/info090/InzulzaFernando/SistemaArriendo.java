@@ -19,7 +19,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		JLabel label = new JLabel();
 		JList lista = new JList();
 		CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
-	}
+	}	
 	
 	public static SistemaArriendo getInstance() {
 		return sistema;
