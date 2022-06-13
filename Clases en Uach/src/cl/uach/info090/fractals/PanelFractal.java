@@ -50,8 +50,8 @@ public class PanelFractal extends JPanel{
 		g2d.draw(linea);
 		
 		if(length>10){
-			dibujarRama(p1, 3*length/4, angle+25, g);
-			dibujarRama(p1, 3*length/4, angle-25, g);
+			dibujarRama(p1, 3*length/4, angle+185, g);
+			dibujarRama(p1, 3*length/4, angle-101, g);
 		}
 	}
 	
