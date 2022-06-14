@@ -3,6 +3,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
@@ -35,7 +36,8 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		
 		for (int i = 0; i < botonesArriendo.length; i++) {
 			botonesArriendo[i] = new JButton("Boton "+(i+1));
-//			botonesArriendo[i].addActionListener();
+			botonesArriendo[i].addActionListener((java.awt.event.ActionListener) sistema);
+			botonesArriendo[i].setBackground(Color.decode("#A6E7BA"));
 			panel_Arriendo.add(botonesArriendo[i]);
 		}
 		
@@ -60,6 +62,22 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		
 	public static void main(String[] args) {
 		SistemaArriendo.getInstance().setVisible(true);
+	}
+
+	@Override
+	public void actionPerfomed(ActionEvent e) {
+		if(e.getSource() instanceof JButton) {
+			JButton boton = (JButton)e.getSource();
+			boton.setBackground(Color.decode("#E1AD86"));
+			System.out.println("holanada");
+			if(boton.getBackground().equals(Color.decode("#A6E7BA"))) {
+				boton.setBackground(Color.decode("#E1AD86"));
+				System.out.println("GATO");
+			} else {
+				boton.setBackground(Color.decode("#A6E7BA"));			
+				System.out.println("PERRO");
+			}
+		}
 	}
 
 }

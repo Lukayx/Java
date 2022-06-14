@@ -1,5 +1,7 @@
 package cl.uach.info090.InzulzaFernando;
 
-public interface ActionListener {
+import java.awt.event.ActionEvent;
 
+public interface ActionListener {
+	public void actionPerfomed(ActionEvent e);
 }
