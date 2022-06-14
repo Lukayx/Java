@@ -8,6 +8,10 @@ import javax.swing.*;
 
 public class SistemaArriendo extends JFrame implements ActionListener{
 	
+	public static void rellenaDatoBoton() {
+		
+	}
+	
 	private static SistemaArriendo sistema = new SistemaArriendo();
 	
 	private SistemaArriendo() {
@@ -31,7 +35,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		
 		for (int i = 0; i < botonesArriendo.length; i++) {
 			botonesArriendo[i] = new JButton("Boton "+(i+1));
-			botonesArriendo[i].addActionListener(null);
+//			botonesArriendo[i].addActionListener();
 			panel_Arriendo.add(botonesArriendo[i]);
 		}
 		
@@ -45,7 +49,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		//this.add(panel_Boletas);
 		
 		JTextField JTextField = new JTextField();
-		JLabel label = new JLabel();
+		JLabel label = new JLabel("Últimas boletas");
 		JList lista = new JList();
 		CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 	}	

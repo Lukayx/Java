@@ -1,13 +1,16 @@
 package cl.uach.info090.InzulzaFernando;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.JButton;
 
 public abstract class Item extends JButton implements Arrendable{	
-	String itemId;
-	String itemDescription;
-	double valorHora;
-	double valorBase;
-	CreadorBoleta creadorBoleta;
+	private String itemId, itemDescription, fechaArriendo="";
+	private double valorHora, valorBase;
+	private CreadorBoleta creadorBoleta;
+	
+	
 	
 	public Item(String itemId, String itemDescripcion, double valorHora, double valorBase, CreadorBoleta creadorBoleta) {
 		this.itemId = itemId;
@@ -19,16 +22,19 @@ public abstract class Item extends JButton implements Arrendable{
 	
 	@Override
 	public void arrendar(String cliente) {
-		
+		LocalDateTime dateTime = LocalDateTime.now();
+		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd-MM");
+		this.fechaArriendo = dateTime.format(formatters);
 	}
 
 	@Override
 	public Boleta devolver() {
-		return null;
+		return (Boleta)creadorBoleta;
 	}
 
 	@Override
 	public boolean enArriendo() {
-		return false;
+		if(fechaArriendo.length()==0) return false;
+		return true;
 	}
 }
