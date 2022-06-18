@@ -25,23 +25,22 @@ private CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 @Override
 public void actionPerformed(ActionEvent e) {
 	if(e.getSource() instanceof JButton) {
-		JButton boton = (JButton)e.getSource();
-		if(boton.getBackground().equals(Color.decode("#A6E7BA"))) {
-			boton.setBackground(Color.decode("#E1AD86"));
+		JButton boton = (JButton)e.getSource();		
+		boton.setBorder();
+		if(boton.getBackground().equals(Color.decode("#C0E4B7"))) {
+			boton.setBackground(Color.decode("#F7E2BD"));
 		} else {
-			boton.setBackground(Color.decode("#A6E7BA"));			
+			boton.setBackground(Color.decode("#C0E4B7"));			
 		}
 	}
 }
 
 public void creandoVentana() {
-	//-----VENTANA-----
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1000, 700);
 	setLocationRelativeTo(sistema);
 	setResizable(false);
 }
-
 
 public void creacionMainPanel() {
 	mainPanel.setLayout(new GridLayout(2,2,20,20));
@@ -56,8 +55,8 @@ public void creaPanelBotones() {
 	for (int i = 0; i < botonesArriendo.length; i++) {
 		botonesArriendo[i] = new JButton("Boton "+(i+1));	
 		botonesArriendo[i].addActionListener(this);
-		botonesArriendo[i].setBackground(Color.decode("#A6E7BA"));
-		botonesArriendo[i].add();
+		botonesArriendo[i].setBackground(Color.decode("#C0E4B7"));
+		//botonesArriendo[i].add();
 		this.panelArriendo.add(botonesArriendo[i]);
 	}
 	mainPanel.add(panelArriendo);
@@ -83,13 +82,6 @@ private SistemaArriendo() {
 	super("Sistema Arriendo");
 	creandoVentana();
 	creacionMainPanel();
-	
-	
-	//-----BOTONES-----
-	
-	//-----PANEL ARRIENDO-----
-	
-
 }	
 
 public static SistemaArriendo getInstance() {
