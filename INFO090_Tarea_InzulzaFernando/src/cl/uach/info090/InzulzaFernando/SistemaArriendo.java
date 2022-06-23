@@ -26,7 +26,6 @@ private CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 public void actionPerformed(ActionEvent e) {
 	if(e.getSource() instanceof JButton) {
 		JButton boton = (JButton)e.getSource();		
-		boton.setBorder();
 		if(boton.getBackground().equals(Color.decode("#C0E4B7"))) {
 			boton.setBackground(Color.decode("#F7E2BD"));
 		} else {
