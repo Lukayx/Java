@@ -10,11 +10,11 @@ public abstract class Item extends JButton implements Arrendable{
 	private double valorHora, valorBase;
 	private CreadorBoleta creadorBoleta;
 	
-	public Item(String itemId, String itemDescripcion, double valorHora, double valorBase, CreadorBoleta creadorBoleta) {
+	public Item(String itemId, String itemDescripcion, double valorBase, double valorHora, CreadorBoleta creadorBoleta) {
 		this.itemId = itemId;
 		this.itemDescription = itemDescripcion;
-		this.valorHora = valorHora;
 		this.valorBase = valorBase;
+		this.valorHora = valorHora;
 		this.creadorBoleta = creadorBoleta;
 	}
 	
