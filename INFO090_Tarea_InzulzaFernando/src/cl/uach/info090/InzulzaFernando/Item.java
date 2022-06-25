@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 
 public abstract class Item extends JButton implements Arrendable{	
-	private String itemId, itemDescription, fechaArriendo="";
-	private double valorHora, valorBase;
+	public String itemId, itemDescription, fechaArriendo="";
+	public double valorHora, valorBase;
 	private CreadorBoleta creadorBoleta;
 	
 	public Item(String itemId, String itemDescripcion, double valorBase, double valorHora, CreadorBoleta creadorBoleta) {

@@ -15,12 +15,12 @@ import java.util.HashMap;
 public class JukeboxMiEstructura {
 	
 	
-	private HashMap <String, Song> songHash;
+	private HashMap <String, Song> songMap;
 	private String jukeFilePath;
 	private ArrayList<Song> ordered;
 	
 	public JukeboxMiEstructura(String jukeFilePath){
-		songHash = new HashMap<String,Song>();
+		songMap = new HashMap<String,Song>();
 		this.jukeFilePath = jukeFilePath;
 	}
 	
@@ -46,17 +46,17 @@ public class JukeboxMiEstructura {
 		String[] parts = lineToParse.split("@@");
 		String title = parts[1].replaceAll("\"","").trim();
 		String artist = parts[0];
-		Song s = songHash.get(title+" "+artist);
+		Song s = songMap.get(title+" "+artist);
 		if(s != null) {
 			s.incrementRating();
 		}else {
 			s = new Song(title,artist);
-			songHash.put(title+" "+artist,s);
+			songMap.put(title+" "+artist,s);
 		}
 	}
 	
 	public int countSongs() {
-		return songHash.size();
+		return songMap.size();
 	}
 	
 	
@@ -65,13 +65,13 @@ public class JukeboxMiEstructura {
 	}
 
 	public void rankSongs(){
-		ordered = new ArrayList<Song>(songHash.values());
+		ordered = new ArrayList<Song>(songMap.values());
 		Collections.sort(ordered);
 	}
 
 	
 	public static void main(String[] args) {
-		JukeboxMiEstructura j = new JukeboxMiEstructura("data/song_list.juke");
+		JukeboxMiEstructura j = new JukeboxMiEstructura("data/song_list_gen.juke");
 		long date1 = System.currentTimeMillis();
 		
 		j.loadSongs();
@@ -84,7 +84,7 @@ public class JukeboxMiEstructura {
 		long date3 = System.currentTimeMillis();
 		System.out.println("Milisegundos en ordenar las canciones: " + (date3-date2));
 		
-		j.printSongs();
+		j.printSongs(); //PUEDE COMENTAR AQUI PARA VER RESULTADOS
 		long date4 = System.currentTimeMillis();
 		System.out.println("Milisegundos en mostrar las canciones: " + (date4-date3));
 	}

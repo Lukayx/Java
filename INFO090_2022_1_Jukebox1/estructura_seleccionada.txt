@@ -1,0 +1,16 @@
+La estructura seleccionada fue HashMap.
+
+Un hashMap me permite almacenar gran cantidad de datos y no decaer en velocidad, esto se debe a que utiliza las claves únicas para acceder a los 
+valores. Almacena cada valor con una clave correspondiente y podemos recuperar estos valores más rápido usando las teclas durante la iteración.
+
+TreeSet y HashSet son mas lentos que hashMap por eso se fueron descartados. LinkedList es buena eliminando elementos pero se vuelve O(n) cuando 
+busca un elemento por lo que es mas lento que HashMap y se aleja de lo que queremos hacer.
+
+LinkedHashMap agrega una lista vinculada a la estructura del HashMap. Esto significa que obtenemos los beneficios de rendimiento de un HashMap, 
+con ordenamiento (orden en que se insertaron los elementos). Pero requiere más memoria y las operaciones básicas como agregar, eliminar, buscar, 
+etc son más lentas. Además, no requerimos de un ordenamiento inicial.
+
+El primer Jukebox se tardaba 14565 milisegundos en leer y organizar los registros del archivo "song_list_gen.juke", en cambio el nuevo jukebox 
+(JukeboxMiEstructura) se toma solo 176 milisegundos en realizarlo. 
+
+En conclusión, en cuanto a agregacion y busqueda de datos sin demora sobre grandes cantidades grandes de datos un HashMap es la mejor opción.

@@ -72,7 +72,8 @@ public class Jukebox {
 		int i = 0;
 		for(Song s: songList) {
 			System.out.println(" - " + s);
-			
+			if(i==25) break;
+			i++;
 		}
 	}
 
@@ -85,7 +86,7 @@ public class Jukebox {
 
 	
 	public static void main(String[] args) {
-		Jukebox j = new Jukebox("data/song_list.juke");
+		Jukebox j = new Jukebox("data/song_list_gen.juke");
 		long date1 = System.currentTimeMillis();
 		
 		j.loadSongs();
