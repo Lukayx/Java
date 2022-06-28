@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 
 public abstract class Item extends JButton implements Arrendable{	
-	public String itemId, itemDescription, fechaArriendo="";
+	public String itemId, itemDescription, fechaArriendo="",cliente;
 	public double valorHora, valorBase;
 	private CreadorBoleta creadorBoleta;
 	
@@ -20,9 +20,10 @@ public abstract class Item extends JButton implements Arrendable{
 	
 	@Override
 	public void arrendar(String cliente) {
+		this.cliente = cliente;
 		LocalDateTime dateTime = LocalDateTime.now();
 		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd-MM");
-		this.fechaArriendo = dateTime.format(formatters);
+		this.fechaArriendo = dateTime.format(formatters)+"-2022";
 	}
 
 	@Override

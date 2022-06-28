@@ -25,7 +25,10 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	
 	private static SistemaArriendo sistema = new SistemaArriendo();
 	
-	private JButton botonesArriendo[] = new JButton[16]; //ARREGLO DE BOTONES PARA ARRENDAR 
+	private JButton botonesArriendo[] = new JButton[16]; //ARREGLO DE BOTONES(ITEMS)
+	private JButton botonArrendar = new JButton(); //BOTÓN PARA ENVIAR DATOS Y ARENDAR ITEM
+	
+	private Item itemActual;//AYUDARÁ A SABER CUAL ITEM ESTA SELECCIONADO
 	
 	private JPanel mainPanel = new JPanel();
 	private JPanel panelArriendo = new JPanel();
@@ -33,13 +36,21 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private JPanel panelBoletas = new JPanel();
 	private JPanel panelExport_Exit = new JPanel();
 	
-	private JList lista = new JList();
-	
-	private JTextArea campoTexto = new JTextArea(10,40);
-	
 	private CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 	
-	private JLabel textBoletas = new JLabel();
+	private JTextArea campoTexto = new JTextArea(10,50);
+	
+	private JTextField cliente = new JTextField(10);
+	
+	private JLabel textoArriendo = new JLabel();
+	
+	private JList lista = new JList();
+	
+	private SistemaArriendo() {
+		super("Sistema Arriendo");
+		creandoVentana();
+		creacionMainPanel();
+	}	
 	
 	public void creandoVentana() {
 		//-----VENTANA-----
@@ -49,13 +60,18 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		setResizable(false);
 	}
 	
-	
 	public void creacionMainPanel() {
 		mainPanel.setLayout(new FlowLayout(SwingConstants.CENTER,15,15));
 		
 		creaPanelBotones(); // PANEL BOTONES AL PRINCIPIO
 		
+		itemActual = (Item)botonesArriendo[0];
+		mostrarDetallesItem(itemActual);
+		itemActual.setBorder(new LineBorder(Color.decode("#595959"),4));
+		
 		mainPanel.add(panelInfo); 
+		
+		panelInfo.setVisible(true);
 		
 		creaPanelBoletas();
 		
@@ -66,49 +82,52 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	
 	public void creaPanelBotones() {
 		panelArriendo.setLayout(new GridLayout(4,4,10,10));
-		
+
 		FileReader fr = null;
 		BufferedReader br = null;
 		try {
 			fr = new FileReader("Archivos/Datos");
 			br = new BufferedReader(fr);
 			String linea = "";	
-			int i = 0;
 			String[] parts;
+			int i = 0;
 			while((linea = br.readLine()) != null) {
 				parts = linea.split(",");
-				if(parts[1].equalsIgnoreCase("kayak")) {					
+				if(parts[1].equalsIgnoreCase("kayak")) 				
 					botonesArriendo[i] = new Kayak(parts[0],parts[2],Double.parseDouble(parts[3]),Double.parseDouble(parts[4]),C_Boleta);	
-				} else if(parts[1].equalsIgnoreCase("segway")) {
+				 else if(parts[1].equalsIgnoreCase("segway")) 
 					botonesArriendo[i] = new Segway(parts[0],parts[2],Double.parseDouble(parts[3]),Double.parseDouble(parts[4]),C_Boleta);	
-				} else {
+				 else 
 					botonesArriendo[i] = new Bicicleta(parts[0],parts[2],Double.parseDouble(parts[3]),Double.parseDouble(parts[4]),C_Boleta);	
-				}
+				
 				botonesArriendo[i].setText(parts[0]);
 				botonesArriendo[i].setFocusPainted(false);
 				botonesArriendo[i].addActionListener(this);
 				botonesArriendo[i].setFont(new Font("Default",0,20));
-				//botonesArriendo[i].setBorder(new RoundedBorder());
-				botonesArriendo[i].setBackground(Color.decode("#D9EAD3")); //#FCE5CD
+				botonesArriendo[i].setBackground(Color.decode("#D9EAD3"));
 				botonesArriendo[i].setPreferredSize(new Dimension(130,95));
+				botonesArriendo[i].setBorder(new LineBorder(Color.decode("#595959")));
 				
-				this.panelArriendo.add(botonesArriendo[i]);
+				panelArriendo.add(botonesArriendo[i]);
 				
 				i++;
 			}
+			
 			br.close();
 			fr.close();
+			itemActual = (Item)botonesArriendo[0];
 		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		mainPanel.add(panelArriendo);
+		
 	}
 	
 	public void creaPanelBoletas() {
 		panelBoletas.setLayout(new BorderLayout());
 		
-		textBoletas.setText("Últimas boletas");
+		JLabel textBoletas = new JLabel("Últimas boletas");
 		textBoletas.setFont(new Font("Default",Font.ITALIC,20));
 		panelBoletas.add(textBoletas,BorderLayout.NORTH);
 		
@@ -120,71 +139,125 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		mainPanel.add(panelBoletas);
 	}
 	
+	public void creaTresColumnas(String uno, String dos) {
+		panelInfo.add(new JLabel(uno));
+		panelInfo.add(new JLabel(":"));
+		JTextField aux = new JTextField(dos,10);
+		aux.setEditable(false);
+		panelInfo.add(aux);
+	}
+	
 	public void mostrarDetallesItem(Item s) {
+		
 		panelInfo.setLayout(new GridLayout(7,1,5,5));
 		panelInfo.setBorder(new LineBorder(Color.gray));
-		panelInfo.setBackground(Color.decode("#B9BDB9"));
+		panelInfo.setBackground(Color.decode("#F3F3F3"));
 		
-		panelInfo.add(new JLabel("Serie"));
-		panelInfo.add(new JLabel(":"));
-		panelInfo.add(new JTextField(s.itemId,10));
+		creaTresColumnas("Serie", s.itemId);
 		
-		panelInfo.add(new JLabel("Desc "));
-		panelInfo.add(new JLabel(":"));
-		panelInfo.add(new JTextField(s.itemDescription,10));
+		creaTresColumnas("Desc", s.itemDescription);
 		
-		panelInfo.add(new JLabel("Valor base "));
-		panelInfo.add(new JLabel(":"));
-		panelInfo.add(new JTextField(String.valueOf(s.valorBase),10));
+		creaTresColumnas("Valor base", String.valueOf(s.valorBase).substring(0, 4));
 		
-		panelInfo.add(new JLabel("Valor Hora "));
-		panelInfo.add(new JLabel(":"));
-		panelInfo.add(new JTextField(String.valueOf(s.valorHora),10));
+		creaTresColumnas("Valor Hora", String.valueOf(s.valorHora).substring(0, 4));
 		
 		panelInfo.add(new JLabel("Estado "));
 		panelInfo.add(new JLabel(":"));
 		
 		JPanel arrendar = new JPanel();
 		arrendar.setLayout(new GridLayout(1,2,10,10));
-		JLabel estado = new JLabel("Disponible");
-		estado.setForeground(Color.green);
-		arrendar.add(estado);
-		JButton botonArriendo = new JButton("Arrendar");
-		botonArriendo.setForeground(Color.WHITE);
-		botonArriendo.setBackground(Color.green);
-		botonArriendo.setFocusable(false);
-		arrendar.add(botonArriendo);
+		
+		botonArrendar.addActionListener(this);
+		botonArrendar.setFocusable(false);
+		botonArrendar.setForeground(Color.decode("#FFFFF4"));
+		if(s.enArriendo()) {
+			textoArriendo.setText("arrendado");
+			textoArriendo.setForeground(Color.decode("#E06666"));
+			botonArrendar.setBackground(Color.decode("#E06666"));
+			botonArrendar.setText("Finalizar");
+		} else {			
+			textoArriendo.setText("disponible");
+			textoArriendo.setForeground(Color.decode("#6AA84F"));
+			botonArrendar.setBackground(Color.decode("#6AA84F"));
+			botonArrendar.setText("Arrendar");
+		}
+		
+		arrendar.add(textoArriendo);
+		arrendar.add(botonArrendar);
+		arrendar.setBackground(Color.decode("#F3F3F3"));
 		panelInfo.add(arrendar);
 		
 		panelInfo.add(new JLabel("Cliente "));
 		panelInfo.add(new JLabel(":"));
-		panelInfo.add(new JTextField(10));
+		cliente.setText(s.cliente); 
+		panelInfo.add(cliente);
 		
-		panelInfo.add(new JLabel("Inicio "));
-		panelInfo.add(new JLabel(":"));
-		panelInfo.add(new JTextField(10));
+		creaTresColumnas("Inicio", s.fechaArriendo);
 		
 		panelInfo.setFont(new Font("Default",0,20));
-		
-		panelInfo.setVisible(true);
 	}
 	
 	public void creaPanelExp_Exit() {
-		new JButton();
+		panelExport_Exit.setLayout(new BorderLayout());
+		
+		JPanel cuartoPanel= new JPanel();
+		cuartoPanel.setLayout(new FlowLayout(3));
+		
+		JButton exportar = new JButton("Exportar boletas");
+		exportar.setFocusPainted(false);
+		exportar.addActionListener(this);
+		exportar.setBackground(Color.decode("#B7B7B7"));
+		exportar.setPreferredSize(new Dimension(370,60));
+		
+		JButton salir = new JButton("Salir");
+		salir.setFocusPainted(false);
+		salir.addActionListener(this);
+		salir.setBackground(Color.decode("#B7B7B7"));
+		salir.setPreferredSize(new Dimension(120,60));
+		
+		cuartoPanel.add(exportar);
+		cuartoPanel.add(salir);
+		
+		panelExport_Exit.add(cuartoPanel,BorderLayout.SOUTH);
+		panelExport_Exit.setVisible(true);
+		mainPanel.add(panelExport_Exit);
+		
 	}
-	
-	private SistemaArriendo() {
-		super("Sistema Arriendo");
-		creandoVentana();
-		creacionMainPanel();
-	}	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() instanceof Item) {
-			Item boton = (Item)e.getSource();
-			panelInfo.removeAll();
-			mostrarDetallesItem(boton);
+		if(e.getSource() instanceof JButton) {
+			if(e.getSource() instanceof Item) {
+				itemActual.setBorder(new LineBorder(Color.decode("#595959")));
+				itemActual = (Item)e.getSource();
+				panelInfo.removeAll();	
+				mostrarDetallesItem(itemActual);
+				itemActual.setBorder(new LineBorder(Color.decode("#595959"),4));
+			} else {
+				JButton boton = (JButton)e.getSource();
+				if(boton.getText()=="Salir") System.exit(0);
+				if(boton.getText()=="Arrendar" && cliente.getText().length()>0) {
+					textoArriendo.setForeground(Color.decode("#E06666"));
+					textoArriendo.setText("arrendado");
+					boton.setBackground(Color.decode("#E06666"));
+					boton.setText("Finalizar");
+					cliente.setEditable(false);
+					itemActual.arrendar(cliente.getText());
+					itemActual.setBackground(Color.decode("#FCE5CD"));
+				} else if(boton.getText()=="Finalizar") {
+					textoArriendo.setForeground(Color.decode("#6AA84F"));
+					textoArriendo.setText("disponible");
+					boton.setBackground(Color.decode("#6AA84F"));
+					boton.setText("Arrendar");
+					cliente.setEditable(true);
+					itemActual.arrendar("");
+					itemActual.setBackground(Color.decode("#D9EAD3"));
+				}
+			}
+			
+		} else if(e.getSource() instanceof JTextField) {
+			JTextField a = (JTextField)e.getSource();
+			a.getText();
 		}
 	}
 	
