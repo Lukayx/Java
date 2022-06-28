@@ -41,6 +41,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private JTextArea campoTexto = new JTextArea(10,50);
 	
 	private JTextField cliente = new JTextField(10);
+	private JTextField fecha = new JTextField(10);
 	
 	private JLabel textoArriendo = new JLabel();
 	
@@ -145,6 +146,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		JTextField aux = new JTextField(dos,10);
 		aux.setEditable(false);
 		panelInfo.add(aux);
+		
 	}
 	
 	public void mostrarDetallesItem(Item s) {
@@ -175,11 +177,13 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 			textoArriendo.setForeground(Color.decode("#E06666"));
 			botonArrendar.setBackground(Color.decode("#E06666"));
 			botonArrendar.setText("Finalizar");
+			cliente.setEditable(false);
 		} else {			
 			textoArriendo.setText("disponible");
 			textoArriendo.setForeground(Color.decode("#6AA84F"));
 			botonArrendar.setBackground(Color.decode("#6AA84F"));
 			botonArrendar.setText("Arrendar");
+			cliente.setEditable(true);
 		}
 		
 		arrendar.add(textoArriendo);
@@ -192,7 +196,11 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		cliente.setText(s.cliente); 
 		panelInfo.add(cliente);
 		
-		creaTresColumnas("Inicio", s.fechaArriendo);
+		panelInfo.add(new JLabel("Inicio"));
+		panelInfo.add(new JLabel(":"));
+		fecha.setText(s.fechaArriendo);
+		fecha.setEditable(false);
+		panelInfo.add(fecha);
 		
 		panelInfo.setFont(new Font("Default",0,20));
 	}
@@ -230,34 +238,37 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 			if(e.getSource() instanceof Item) {
 				itemActual.setBorder(new LineBorder(Color.decode("#595959")));
 				itemActual = (Item)e.getSource();
+				itemActual.setBorder(new LineBorder(Color.decode("#595959"),4));
 				panelInfo.removeAll();	
 				mostrarDetallesItem(itemActual);
-				itemActual.setBorder(new LineBorder(Color.decode("#595959"),4));
 			} else {
 				JButton boton = (JButton)e.getSource();
+				
 				if(boton.getText()=="Salir") System.exit(0);
+				
 				if(boton.getText()=="Arrendar" && cliente.getText().length()>0) {
 					textoArriendo.setForeground(Color.decode("#E06666"));
 					textoArriendo.setText("arrendado");
+					
 					boton.setBackground(Color.decode("#E06666"));
 					boton.setText("Finalizar");
+					
+					fecha.setText(itemActual.fechaArriendo);
 					cliente.setEditable(false);
+					
 					itemActual.arrendar(cliente.getText());
 					itemActual.setBackground(Color.decode("#FCE5CD"));
 				} else if(boton.getText()=="Finalizar") {
 					textoArriendo.setForeground(Color.decode("#6AA84F"));
 					textoArriendo.setText("disponible");
+					
 					boton.setBackground(Color.decode("#6AA84F"));
 					boton.setText("Arrendar");
+					
 					cliente.setEditable(true);
-					itemActual.arrendar("");
 					itemActual.setBackground(Color.decode("#D9EAD3"));
 				}
 			}
-			
-		} else if(e.getSource() instanceof JTextField) {
-			JTextField a = (JTextField)e.getSource();
-			a.getText();
 		}
 	}
 	
