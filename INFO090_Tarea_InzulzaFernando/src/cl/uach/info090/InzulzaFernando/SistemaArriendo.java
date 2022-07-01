@@ -47,6 +47,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private JTextField camposTextoInfo[] = new JTextField[6];
 	
 	private JLabel textoArriendo = new JLabel();
+	private JLabel textoBoletas = new JLabel();
 	private JLabel labelsInfo[] = new JLabel[7];
 	private JLabel dosPuntos[] = new JLabel[7];
 	private JLabel labelVentanaEmergente = new JLabel();
@@ -181,16 +182,21 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	public void creaPanelBoletas() {
 		panelBoletas.setLayout(new BorderLayout());
 		
-		JLabel textBoletas = new JLabel("Últimas boletas");
-		textBoletas.setFont(new Font("Default",Font.ITALIC,20));
-		panelBoletas.add(textBoletas,BorderLayout.NORTH);
-		
+		textoBoletas.setText("Últimas boletas");
+		textoBoletas.setFont(new Font("Default",Font.ITALIC,20));
+		//campoTexto.setText("Perro");
 		campoTexto.setBorder(new RoundedBorder(Color.BLACK, 5));
-		campoTexto.setEditable(false);
+		//campoTexto.setEditable(false);
+		
+		panelBoletas.add(textoBoletas,BorderLayout.NORTH);
 		panelBoletas.add(campoTexto, BorderLayout.SOUTH);
 		
-		
 		mainPanel.add(panelBoletas);
+	}
+	
+	public void actualizaPanelBoletas(){
+		//CreadorBoletaCL aux = ;
+		campoTexto.setText(itemActual.devolver().toString());
 	}
 	
 	public void creaTresColumnas(JLabel label1, String txt1,  JLabel label2, JTextField campoTexto) {
@@ -355,15 +361,15 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 					
 					itemActual.arrendar(itemActual.cliente);
 					itemActual.setBackground(Color.decode("#FCE5CD"));
-					
 					actualizaPanel_Info(itemActual);
 					
 					ventanaEmergente.setVisible(false);
 					
 				} else if(boton.getText().equals("Finalizar")) {
 					itemActual.cliente="";
-					itemActual.fechaArriendo="";
+					actualizaPanelBoletas();
 								
+					itemActual.fechaArriendo="";
 					actualizaPanel_Info(itemActual);
 					
 					itemActual.setBackground(Color.decode("#D9EAD3"));

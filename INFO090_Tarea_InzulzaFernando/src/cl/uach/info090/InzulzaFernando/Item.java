@@ -22,13 +22,14 @@ public abstract class Item extends JButton implements Arrendable{
 	public void arrendar(String cliente) {
 		this.cliente = cliente;
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd-MM");
-		this.fechaArriendo = dateTime.format(formatters)+"-2022";
+		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+		this.fechaArriendo = dateTime.format(formatters);
 	}
 
 	@Override
 	public Boleta devolver() {
-		return (Boleta)creadorBoleta;
+		
+		return creadorBoleta.generarBoleta(cliente, "asdas", valorBase);
 	}
 
 	@Override
