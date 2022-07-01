@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.NumberFormat.Style;
+import java.util.Iterator;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -36,14 +37,19 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private JPanel panelBoletas = new JPanel();
 	private JPanel panelExport_Exit = new JPanel();
 	
+	private JFrame ventanaEmergente = new JFrame();
+	
 	private CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 	
 	private JTextArea campoTexto = new JTextArea(10,50);
 	
 	private JTextField cliente = new JTextField(10);
-	private JTextField fecha = new JTextField(10);
+	private JTextField camposTextoInfo[] = new JTextField[6];
 	
 	private JLabel textoArriendo = new JLabel();
+	private JLabel labelsInfo[] = new JLabel[7];
+	private JLabel dosPuntos[] = new JLabel[7];
+	private JLabel labelVentanaEmergente = new JLabel();
 	
 	private JList lista = new JList();
 	
@@ -61,22 +67,69 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		setResizable(false);
 	}
 	
+	public void creaVentanaEmergente() {		
+		ventanaEmergente.setSize(280,170);
+		ventanaEmergente.setLocationRelativeTo(sistema);
+		ventanaEmergente.setResizable(false);
+		ventanaEmergente.setLayout(new FlowLayout(SwingConstants.CENTER,15,15));
+		
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setLayout(new GridLayout(3,1,0,10));
+		panelPrincipal.add(labelVentanaEmergente);
+		
+		JPanel aux = new JPanel();
+		aux.setLayout(new GridLayout(1,2,10,0));
+		aux.add(new JLabel("Cliente: "));
+		aux.add(cliente);
+		panelPrincipal.add(aux);
+		
+		JPanel aux2 = new JPanel();
+		aux2.setLayout(new GridLayout(1,2,10,0));
+		
+		
+		JButton boton1 = new JButton("Cancelar");
+		boton1.setFocusPainted(false);
+		boton1.addActionListener(e->ventanaEmergente.dispose());
+		boton1.setBackground(Color.decode("#B7B7B7"));
+		//boton.setPreferredSize(new Dimension(370,60));
+		aux2.add(boton1);
+		
+		JButton boton2 = new JButton("Ok");
+		boton2.setFocusPainted(false);
+		boton2.addActionListener(this);
+		boton2.setMnemonic('\n');
+		boton2.setBackground(Color.decode("#B7B7B7"));
+		aux2.add(boton2);
+		panelPrincipal.add(aux2);
+		
+		ventanaEmergente.add(panelPrincipal);
+		ventanaEmergente.setVisible(false);		
+	}
+	
+	public void muestraVentanaEmergente(Item s) {
+		labelVentanaEmergente.setText("Arrendar item "+s.itemId);
+		cliente.setText("");
+		ventanaEmergente.setVisible(true);
+	}
+	
 	public void creacionMainPanel() {
 		mainPanel.setLayout(new FlowLayout(SwingConstants.CENTER,15,15));
 		
 		creaPanelBotones(); // PANEL BOTONES AL PRINCIPIO
+		botonArrendar.addActionListener(this);
+		
+		creaPanelInfo();
 		
 		itemActual = (Item)botonesArriendo[0];
-		mostrarDetallesItem(itemActual);
 		itemActual.setBorder(new LineBorder(Color.decode("#595959"),4));
 		
-		mainPanel.add(panelInfo); 
-		
-		panelInfo.setVisible(true);
+		actualizaPanel_Info(itemActual);
 		
 		creaPanelBoletas();
 		
 		creaPanelExp_Exit();
+		
+		creaVentanaEmergente();
 		
 		this.getContentPane().add(mainPanel); //AGREGAMOS EL PANEL A LA PANTALLA
 	}
@@ -107,7 +160,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 				botonesArriendo[i].setFont(new Font("Default",0,20));
 				botonesArriendo[i].setBackground(Color.decode("#D9EAD3"));
 				botonesArriendo[i].setPreferredSize(new Dimension(130,95));
-				botonesArriendo[i].setBorder(new LineBorder(Color.decode("#595959")));
+				botonesArriendo[i].setBorder(new RoundedBorder(Color.BLACK, 5));
 				
 				panelArriendo.add(botonesArriendo[i]);
 				
@@ -132,7 +185,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		textBoletas.setFont(new Font("Default",Font.ITALIC,20));
 		panelBoletas.add(textBoletas,BorderLayout.NORTH);
 		
-		campoTexto.setBorder(new LineBorder(Color.black));
+		campoTexto.setBorder(new RoundedBorder(Color.BLACK, 5));
 		campoTexto.setEditable(false);
 		panelBoletas.add(campoTexto, BorderLayout.SOUTH);
 		
@@ -140,69 +193,115 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		mainPanel.add(panelBoletas);
 	}
 	
-	public void creaTresColumnas(String uno, String dos) {
-		panelInfo.add(new JLabel(uno));
-		panelInfo.add(new JLabel(":"));
-		JTextField aux = new JTextField(dos,10);
-		aux.setEditable(false);
-		panelInfo.add(aux);
+	public void creaTresColumnas(JLabel label1, String txt1,  JLabel label2, JTextField campoTexto) {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout());
+		panel.setOpaque(false);
 		
+		label1.setText(txt1);
+		
+		panel.add(label1);
+		
+		panel.add(label2);
+		
+		panel.add(campoTexto);
+		
+		panelInfo.add(panel);
 	}
 	
-	public void mostrarDetallesItem(Item s) {
+	public void creaPanelInfo() {
+		JPanel panelInfoFlow = new JPanel();
+		panelInfoFlow.setLayout(new FlowLayout(SwingConstants.CENTER,10,69));
+		panelInfoFlow.setBorder(new RoundedBorder(Color.BLACK, 5));
+		panelInfoFlow.add(panelInfo);
 		
-		panelInfo.setLayout(new GridLayout(7,1,5,5));
-		panelInfo.setBorder(new LineBorder(Color.gray));
-		panelInfo.setBackground(Color.decode("#F3F3F3"));
+		panelInfoFlow.setBackground(Color.decode("#F3F3F3"));
 		
-		creaTresColumnas("Serie", s.itemId);
+		panelInfo.setLayout(new GridLayout(7,1,0,10));
+		panelInfo.setOpaque(false);
 		
-		creaTresColumnas("Desc", s.itemDescription);
+		for (int i = 0; i<camposTextoInfo.length;i++) {
+			camposTextoInfo[i] = new JTextField(10);
+			camposTextoInfo[i].setEditable(false);
+			camposTextoInfo[i].setBorder(new RoundedBorder(Color.BLACK, 5));
+			camposTextoInfo[i].setFont(new Font("Default",0,15));
+		}
 		
-		creaTresColumnas("Valor base", String.valueOf(s.valorBase).substring(0, 4));
+		for (int i = 0; i<labelsInfo.length;i++) {
+			labelsInfo[i] = new JLabel();
+			dosPuntos[i] = new JLabel(":");
+			labelsInfo[i].setFont(new Font("Default",1,15));
+			//labelsInfo[i].
+			dosPuntos[i].setFont(new Font("Default",1,15));
+		}
 		
-		creaTresColumnas("Valor Hora", String.valueOf(s.valorHora).substring(0, 4));
+		creaTresColumnas(labelsInfo[0],"Serie",dosPuntos[0],camposTextoInfo[0]);
 		
-		panelInfo.add(new JLabel("Estado "));
-		panelInfo.add(new JLabel(":"));
+		creaTresColumnas(labelsInfo[1],"Desc",dosPuntos[1],camposTextoInfo[1]);
 		
+		creaTresColumnas(labelsInfo[2],"Valor base",dosPuntos[2],camposTextoInfo[2]);
+		
+		creaTresColumnas(labelsInfo[3],"Valor hora",dosPuntos[3],camposTextoInfo[3]);
+		
+		labelsInfo[4].setText("Estado");
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout());
+		panel.setOpaque(false);
+				
+		panel.add(labelsInfo[4]);
+		panel.add(dosPuntos[4]);
+		
+		//AQUI SE CREA EL PANEL CON EL BOTON DE ARRENDAR Y SU LABEL DE COLOR
+		//------------------------------------------------------------------
 		JPanel arrendar = new JPanel();
 		arrendar.setLayout(new GridLayout(1,2,10,10));
 		
-		botonArrendar.addActionListener(this);
+		
 		botonArrendar.setFocusable(false);
+		botonArrendar.setPreferredSize(new Dimension(70,30));;
+		botonArrendar.setBorder(new RoundedBorder(Color.BLACK, 6));
 		botonArrendar.setForeground(Color.decode("#FFFFF4"));
+		
+		textoArriendo.setFont(new Font("Default",1,15));
+		arrendar.add(textoArriendo);
+		arrendar.add(botonArrendar);
+		
+		arrendar.setBackground(Color.decode("#F3F3F3"));
+		
+		panel.add(arrendar)
+		;
+		
+		panelInfo.add(panel);
+		//------------------------------------------------------------------
+		
+		creaTresColumnas(labelsInfo[5],"Cliente",dosPuntos[5],camposTextoInfo[4]);
+		
+		creaTresColumnas(labelsInfo[6],"Inicio",dosPuntos[6],camposTextoInfo[5]);
+		
+		panelInfo.setVisible(true);
+		
+		mainPanel.add(panelInfoFlow); 
+	}
+	
+	public void  actualizaPanel_Info(Item s) {
+		camposTextoInfo[0].setText(s.itemId);
+		camposTextoInfo[1].setText(s.itemDescription);
+		camposTextoInfo[2].setText(String.valueOf(s.valorBase).substring(0, 4));
+		camposTextoInfo[3].setText(String.valueOf(s.valorHora).substring(0, 4));
+		camposTextoInfo[4].setText(s.cliente);
+		camposTextoInfo[5].setText(s.fechaArriendo);
+		
 		if(s.enArriendo()) {
 			textoArriendo.setText("arrendado");
 			textoArriendo.setForeground(Color.decode("#E06666"));
 			botonArrendar.setBackground(Color.decode("#E06666"));
 			botonArrendar.setText("Finalizar");
-			cliente.setEditable(false);
 		} else {			
 			textoArriendo.setText("disponible");
 			textoArriendo.setForeground(Color.decode("#6AA84F"));
 			botonArrendar.setBackground(Color.decode("#6AA84F"));
 			botonArrendar.setText("Arrendar");
-			cliente.setEditable(true);
 		}
-		
-		arrendar.add(textoArriendo);
-		arrendar.add(botonArrendar);
-		arrendar.setBackground(Color.decode("#F3F3F3"));
-		panelInfo.add(arrendar);
-		
-		panelInfo.add(new JLabel("Cliente "));
-		panelInfo.add(new JLabel(":"));
-		cliente.setText(s.cliente); 
-		panelInfo.add(cliente);
-		
-		panelInfo.add(new JLabel("Inicio"));
-		panelInfo.add(new JLabel(":"));
-		fecha.setText(s.fechaArriendo);
-		fecha.setEditable(false);
-		panelInfo.add(fecha);
-		
-		panelInfo.setFont(new Font("Default",0,20));
 	}
 	
 	public void creaPanelExp_Exit() {
@@ -213,12 +312,14 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		
 		JButton exportar = new JButton("Exportar boletas");
 		exportar.setFocusPainted(false);
+		exportar.setBorder(new RoundedBorder(Color.BLACK,20));
 		exportar.addActionListener(this);
 		exportar.setBackground(Color.decode("#B7B7B7"));
 		exportar.setPreferredSize(new Dimension(370,60));
 		
 		JButton salir = new JButton("Salir");
 		salir.setFocusPainted(false);
+		salir.setBorder(new RoundedBorder(Color.BLACK,20));
 		salir.addActionListener(this);
 		salir.setBackground(Color.decode("#B7B7B7"));
 		salir.setPreferredSize(new Dimension(120,60));
@@ -239,33 +340,32 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 				itemActual.setBorder(new LineBorder(Color.decode("#595959")));
 				itemActual = (Item)e.getSource();
 				itemActual.setBorder(new LineBorder(Color.decode("#595959"),4));
-				panelInfo.removeAll();	
-				mostrarDetallesItem(itemActual);
+				actualizaPanel_Info(itemActual);
 			} else {
 				JButton boton = (JButton)e.getSource();
 				
-				if(boton.getText()=="Salir") System.exit(0);
+				if(boton.getText().equals("Salir")) System.exit(0);
 				
-				if(boton.getText()=="Arrendar" && cliente.getText().length()>0) {
-					textoArriendo.setForeground(Color.decode("#E06666"));
-					textoArriendo.setText("arrendado");
+				if(boton.getText().equals("Arrendar")) {	
+
+					muestraVentanaEmergente(itemActual);					
 					
-					boton.setBackground(Color.decode("#E06666"));
-					boton.setText("Finalizar");
+				} else if(boton.getText().equals("Ok") && cliente.getText().length()>0) {
+					itemActual.cliente = cliente.getText();
 					
-					fecha.setText(itemActual.fechaArriendo);
-					cliente.setEditable(false);
-					
-					itemActual.arrendar(cliente.getText());
+					itemActual.arrendar(itemActual.cliente);
 					itemActual.setBackground(Color.decode("#FCE5CD"));
-				} else if(boton.getText()=="Finalizar") {
-					textoArriendo.setForeground(Color.decode("#6AA84F"));
-					textoArriendo.setText("disponible");
 					
-					boton.setBackground(Color.decode("#6AA84F"));
-					boton.setText("Arrendar");
+					actualizaPanel_Info(itemActual);
 					
-					cliente.setEditable(true);
+					ventanaEmergente.setVisible(false);
+					
+				} else if(boton.getText().equals("Finalizar")) {
+					itemActual.cliente="";
+					itemActual.fechaArriendo="";
+								
+					actualizaPanel_Info(itemActual);
+					
 					itemActual.setBackground(Color.decode("#D9EAD3"));
 				}
 			}
