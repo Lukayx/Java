@@ -9,8 +9,8 @@ public class CreadorBoletaCL implements CreadorBoleta{
 	public Boleta generarBoleta(String cliente, String detalle, double neto) {
 		//----CONSIGUIENDO LA FECHA ACTUAL EN EL FORMATO CORRECTO----
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd-MM");
-		String fecha = dateTime.format(formatters);
+		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("hh:mm");
+		String fecha = detalle + "   " + dateTime.format(formatters);
 		
 		double impuesto = (neto*19)/100; //IVA POR REGLA DE 3 
 		

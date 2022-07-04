@@ -32,11 +32,11 @@ public class LibroContactos extends JFrame implements ActionListener{
 		
 		listModel = new DefaultListModel<Contacto>();
 		list = new JList<Contacto>(listModel);
-		list.setLayoutOrientation(JList.VERTICAL);
+		//list.setLayoutOrientation(JList.VERTICAL);
 		
 		JScrollPane listScroller = new JScrollPane(list);
-		//listScroller.setPreferredSize(new Dimension(240, 120));
-		listScroller.setBounds(10, 10, 240, 200);
+		listScroller.setPreferredSize(new Dimension(240, 120));
+		listScroller.setBounds(10, 10, 300, 200);
 	
 		add(listScroller);
 		

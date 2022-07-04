@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 
 public abstract class Item extends JButton implements Arrendable{	
-	public String itemId, itemDescription, fechaArriendo="",cliente;
+	public String itemId, itemDescription, fechaArriendo="",cliente="";
 	public double valorHora, valorBase;
 	private CreadorBoleta creadorBoleta;
 	
@@ -22,14 +22,13 @@ public abstract class Item extends JButton implements Arrendable{
 	public void arrendar(String cliente) {
 		this.cliente = cliente;
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy  hh:mm");
 		this.fechaArriendo = dateTime.format(formatters);
 	}
 
 	@Override
 	public Boleta devolver() {
-		
-		return creadorBoleta.generarBoleta(cliente, "asdas", valorBase);
+		return creadorBoleta.generarBoleta(cliente, fechaArriendo, valorBase);
 	}
 
 	@Override

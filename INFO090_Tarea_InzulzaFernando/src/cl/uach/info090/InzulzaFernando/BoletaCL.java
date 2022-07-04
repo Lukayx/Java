@@ -6,7 +6,7 @@ public class BoletaCL extends Boleta{
 	
 	@Override
 	public String toString() {
-		return fecha+" $"+valorTotal;
+		return fecha+"    $"+(int)valorTotal;
 	}
 	
 	public BoletaCL(String fecha, String cliente, String detalle, double neto, double impuesto, double valorTotal) {
