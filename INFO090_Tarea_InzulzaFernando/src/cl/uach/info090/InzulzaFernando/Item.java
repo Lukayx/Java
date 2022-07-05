@@ -2,6 +2,7 @@ package cl.uach.info090.InzulzaFernando;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.JButton;
 
@@ -28,7 +29,10 @@ public abstract class Item extends JButton implements Arrendable{
 
 	@Override
 	public Boleta devolver() {
-		return creadorBoleta.generarBoleta(cliente, fechaArriendo, valorBase);
+		Boleta boleta = creadorBoleta.generarBoleta(cliente, fechaArriendo+" "+itemId, valorBase);
+		System.out.println(boleta.detalle());
+		return boleta;
+		
 	}
 
 	@Override

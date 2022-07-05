@@ -14,7 +14,22 @@ public class CreadorBoletaCL implements CreadorBoleta{
 		
 		double impuesto = (neto*19)/100; //IVA POR REGLA DE 3 
 		
-		boleta = new BoletaCL(fecha,cliente,detalle,neto,impuesto,neto + impuesto);
+		String contenido = "- Boleta de Arriendo -\n";
+		contenido 		+= "----------------------\n";
+		contenido 		+= "Boleta generada el: \n";
+		contenido 		+= fecha+"\n";
+		contenido 		+= "----------------------\n";
+		contenido 		+= "Cliente: "+ cliente + "\n";
+		contenido 		+= "----------------------\n";
+		contenido 		+= "Arriendo inicio : " + detalle.substring(0,detalle.lastIndexOf(" ")) + "\n";
+		contenido 		+= "Arriendo fin    : " + fecha + "\n";
+		contenido 		+= "Item            : " + detalle.substring(detalle.lastIndexOf(" ")) + "\n";
+		contenido 		+= "\n";
+		contenido 		+= "neto + impuesto: \t" + neto + " pesos\n";
+		contenido 		+= "neto           : \t" + (neto + impuesto )+ " pesos\n";
+		contenido 		+= "\n ---- Vuelva Pronto!! ----";
+		
+		boleta = new BoletaCL(fecha,cliente,contenido,neto,impuesto,neto + impuesto);
 		return boleta; 
 	}
 

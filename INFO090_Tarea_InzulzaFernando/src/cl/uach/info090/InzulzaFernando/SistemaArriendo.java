@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Iterator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -60,7 +61,6 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		setLocationRelativeTo(sistema);
 		setResizable(false);
 	}
-	
 	
 	public void creacionMainPanel() {
 		mainPanel.setLayout(new FlowLayout(0,15,15));
@@ -282,20 +282,24 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	}
 	
 	public void exportarBoletas() {
-		/*FileWriter fw;
-		BufferedWriter bw;
-		
-		try{
-			fw = new FileWriter("./Boletas/"+ruta);
-			bw = new BufferedWriter(fw);
-			for(int i = 0; i < lineas.size(); i++) {
-				bw.write(lineas.get(i));
+		String detalle;		
+		System.out.println(listModel.get(0));
+		for (int i = 0; i < listModel.getSize();i++) {
+//			ultimasBoletas.getSelectedValues;
+			FileWriter fw;
+			BufferedWriter bw;
+			try{
+				fw = new FileWriter("./Archivos/"+"Perrito.txt");
+				bw = new BufferedWriter(fw);
+				bw.write(detalle);
+				//for(int j = 0; i < detalle.length(); i++) {
+				//}
+				bw.close();
+				fw.close();
+			}catch(Exception e){
+				e.printStackTrace();
 			}
-			bw.close();
-			fw.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	public void creaVentanaEmergente() {		
