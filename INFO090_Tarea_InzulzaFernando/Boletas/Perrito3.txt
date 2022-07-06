@@ -1,0 +1,15 @@
+- Boleta de Arriendo -
+-----------------------------------
+Boleta generada el: 
+05/07/2022  06:08
+-----------------------------------
+Cliente: XDD
+-----------------------------------
+Arriendo inicio : 05/07/2022  06:08
+Arriendo fin    : 05/07/2022  06:08
+Item            : S004
+
+neto            : 6000.0 pesos
+neto + impuesto : 7140.0 pesos
+
+ -------- Vuelva Pronto! --------

@@ -1,0 +1,15 @@
+- Boleta de Arriendo -
+-----------------------------------
+Boleta generada el: 
+05/07/2022  06:23
+-----------------------------------
+Cliente: Fernadno
+-----------------------------------
+Arriendo inicio : 05/07/2022  06:23
+Arriendo fin    : 05/07/2022  06:23
+Item            : B001
+
+neto            : 3000.0 pesos
+neto + impuesto : 3570.0 pesos
+
+ --------- Vuelva Pronto!! --------

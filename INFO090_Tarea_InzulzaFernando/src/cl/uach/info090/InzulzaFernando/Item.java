@@ -29,10 +29,7 @@ public abstract class Item extends JButton implements Arrendable{
 
 	@Override
 	public Boleta devolver() {
-		Boleta boleta = creadorBoleta.generarBoleta(cliente, fechaArriendo+" "+itemId, valorBase);
-		System.out.println(boleta.detalle());
-		return boleta;
-		
+		return creadorBoleta.generarBoleta(cliente, fechaArriendo+" "+itemId, valorBase);	
 	}
 
 	@Override

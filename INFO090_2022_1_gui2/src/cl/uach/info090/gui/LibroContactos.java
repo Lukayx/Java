@@ -54,12 +54,9 @@ public class LibroContactos extends JFrame implements ActionListener{
 			String telefono = JOptionPane.showInputDialog("Ingresa el telefono del contacto");
 			if(telefono != null) {
 				listModel.addElement(new Contacto(nombre,telefono));
+				System.out.println(listModel.getElementAt(0));
 			}
 		}
-			
-			
-		
-		
 		
 	}
 

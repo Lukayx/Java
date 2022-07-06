@@ -1,0 +1,15 @@
+------- Boleta de Arriendo --------
+-----------------------------------
+Boleta generada el: 
+05/07/2022  06:23
+-----------------------------------
+Cliente: Jose
+-----------------------------------
+Arriendo inicio : 05/07/2022  06:23
+Arriendo fin    : 05/07/2022  06:23
+Item            : K006
+
+neto            : 2500.0 pesos
+neto + impuesto : 2975.0 pesos
+
+ --------- Vuelva Pronto!! --------

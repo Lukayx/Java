@@ -282,18 +282,17 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	}
 	
 	public void exportarBoletas() {
-		String detalle;		
-		System.out.println(listModel.get(0));
+		Boleta boleta;		
 		for (int i = 0; i < listModel.getSize();i++) {
-//			ultimasBoletas.getSelectedValues;
+			boleta = listModel.getElementAt(i);
 			FileWriter fw;
 			BufferedWriter bw;
 			try{
-				fw = new FileWriter("./Archivos/"+"Perrito.txt");
+				fw = new FileWriter("./Boletas/" + i + ".txt");
 				bw = new BufferedWriter(fw);
-				bw.write(detalle);
-				//for(int j = 0; i < detalle.length(); i++) {
-				//}
+				for(int j = 0; j < boleta.detalle().length(); j++) {
+					bw.write(boleta.detalle().charAt(j));
+				}
 				bw.close();
 				fw.close();
 			}catch(Exception e){
@@ -346,8 +345,8 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	
 	public void muestraVentanaEmergente(Item s) {
 		labelVentanaEmergente.setText("Arrendar item "+s.itemId);
-		cliente.setText("");
 		ventanaEmergente.setVisible(true);
+		cliente.setText("");
 	}
 
 	@Override
@@ -378,9 +377,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 					ventanaEmergente.setVisible(false);
 					
 				} else if(boton.getText().equals("Finalizar")) {
-					itemActual.cliente="";
 					actualizaPanelBoletas();
 								
+					itemActual.cliente="";
 					itemActual.fechaArriendo="";
 					actualizaPanel_Info(itemActual);
 					
