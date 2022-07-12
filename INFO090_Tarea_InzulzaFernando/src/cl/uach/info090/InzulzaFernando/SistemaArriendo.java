@@ -32,7 +32,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private JPanel panelBoletas = new JPanel();
 	private JPanel panelExport_Exit = new JPanel();
 	
-	private JFrame ventanaEmergente = new JFrame();
+	private JDialog ventanaEmergente = new JDialog(this,"asdad",true);
 	
 	private CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 	
@@ -209,12 +209,12 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	}
 	
 	public void  actualizaPanel_Info(Item s) {
-		camposTextoInfo[0].setText(" "+s.itemId);
-		camposTextoInfo[1].setText(" "+s.itemDescription);
-		camposTextoInfo[2].setText(" "+String.valueOf((int)s.valorBase));
-		camposTextoInfo[3].setText(" "+String.valueOf((int)s.valorHora));
-		camposTextoInfo[4].setText(" "+s.cliente);
-		camposTextoInfo[5].setText(" "+s.fechaArriendo);
+		camposTextoInfo[0].setText(" "+s.getItemId());
+		camposTextoInfo[1].setText(" "+s.getItemDescription());
+		camposTextoInfo[2].setText(" "+String.valueOf((int)s.getValorBase()));
+		camposTextoInfo[3].setText(" "+String.valueOf((int)s.getValorHora()));
+		camposTextoInfo[4].setText(" "+s.getCliente());
+		camposTextoInfo[5].setText(" "+s.getFechaArriendo());
 		
 		if(s.enArriendo()) {
 			textoArriendo.setText("Arrendado");
@@ -283,12 +283,19 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	
 	public void exportarBoletas() {
 		Boleta boleta;		
+		String nombreArchivo;
+		int indiceSubString;
 		for (int i = 0; i < listModel.getSize();i++) {
 			boleta = listModel.getElementAt(i);
 			FileWriter fw;
 			BufferedWriter bw;
+			nombreArchivo = boleta.toString();
+			indiceSubString = nombreArchivo.indexOf(" ");
+			nombreArchivo = nombreArchivo.substring(0,nombreArchivo.indexOf(':')-2);
+			nombreArchivo =  nombreArchivo.replaceAll("/","-");
+			nombreArchivo = nombreArchivo.replaceAll(" ","");
 			try{
-				fw = new FileWriter("./Boletas/" + i + ".txt");
+				fw = new FileWriter("./Boletas/" + nombreArchivo + ".txt");
 				bw = new BufferedWriter(fw);
 				for(int j = 0; j < boleta.detalle().length(); j++) {
 					bw.write(boleta.detalle().charAt(j));
@@ -344,7 +351,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	}
 	
 	public void muestraVentanaEmergente(Item s) {
-		labelVentanaEmergente.setText("Arrendar item "+s.itemId);
+		labelVentanaEmergente.setText("Arrendar item "+s.getItemId());
 		ventanaEmergente.setVisible(true);
 		cliente.setText("");
 	}
@@ -366,10 +373,8 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 
 					muestraVentanaEmergente(itemActual);					
 					
-				} else if(boton.getText().equals("Ok") && cliente.getText().length()>0) {
-					itemActual.cliente = cliente.getText();
-					
-					itemActual.arrendar(itemActual.cliente);
+				} else if(boton.getText().equals("Ok") && cliente.getText().length()>0) {		
+					itemActual.arrendar(cliente.getText());
 					itemActual.setBackground(Color.decode("#FCE5CD"));
 					
 					actualizaPanel_Info(itemActual);
@@ -379,8 +384,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 				} else if(boton.getText().equals("Finalizar")) {
 					actualizaPanelBoletas();
 								
-					itemActual.cliente="";
-					itemActual.fechaArriendo="";
+					itemActual.arrendar("");
 					actualizaPanel_Info(itemActual);
 					
 					itemActual.setBackground(Color.decode("#D9EAD3"));

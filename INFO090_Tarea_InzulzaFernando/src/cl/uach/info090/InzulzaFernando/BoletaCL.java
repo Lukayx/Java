@@ -4,11 +4,18 @@ public class BoletaCL extends Boleta{
 	private String fecha, cliente, detalle; 
 	private double neto, impuesto, valorTotal;
 	
+	/**
+	 *  <p>
+	 *  @return Devuelve un String con la informacion sobre el arriendo
+	 */
 	@Override
 	public String toString() {
-		return cliente+" "+fecha+"    $"+(int)valorTotal;
+		return cliente+" "+fecha+"   $"+(int)valorTotal;
 	}
 	
+	/**
+	 * @return Devuelve un String con la informacion sobre la boleta lista para exportar
+	 */
 	@Override
 	public String detalle() {
 		return detalle;
