@@ -58,6 +58,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		creacionMainPanel();
 	}	
 	
+	/**
+	 * Este metodo definira el largo de la ventana y sus caracteristicas
+	 */
 	public void creandoVentana() {
 		//-----VENTANA-----
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +69,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		setResizable(false);
 	}
 	
+	/**
+	 * Este metodo se encargará de crear y organizar los paneles de la interfaz para que estén en el orden correcto
+	 */
 	public void creacionMainPanel() {
 		mainPanel.setLayout(new FlowLayout(0,15,15));
 		mainPanel.setBackground(Color.WHITE);
@@ -88,6 +94,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		this.getContentPane().add(mainPanel); //AGREGAMOS EL PANEL A LA PANTALLA
 	}
 	
+	/**
+	 * Este metodo creará el panel con los 16 Botones (Items) junto con todas sus caracteristicas y los ordenará con un GridLayout de 4x4
+	 */
 	public void creaPanelBotones() {
 		panelArriendo.setLayout(new GridLayout(4,4,10,10));
 		panelArriendo.setBackground(Color.WHITE);
@@ -133,7 +142,15 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		
 	}
 	
-	public void creaTresColumnas(JLabel label1, String txt1,  JLabel label2, JTextField campoTexto) {
+	/**
+	 * Este metodo creara las filas en el panel que contiene la informacion del Item.
+	 * 
+	 * @param label1 Etiqueta sin texto
+	 * @param txt1 Texto para el label1
+	 * @param label2 Etiqueta con texto ":"
+	 * @param campoTexto Campo de texto para mostrar informacion del Item
+	 */
+	public void creaFila(JLabel label1, String txt1,  JLabel label2, JTextField campoTexto) {
 		label1.setText(txt1);
 		
 		panelInfo.add(label1);
@@ -143,6 +160,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		panelInfo.add(campoTexto);
 	}
 	
+	/**
+	 * Este metodo creara y ordenará los JLabel y JTextField en un panel con un GridLayout de 7x3.
+	 */
 	public void creaPanelInfo() {
 		JPanel panelInfoFlow = new JPanel();
 		panelInfoFlow.setLayout(new FlowLayout(SwingConstants.CENTER,10,17));
@@ -168,13 +188,13 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 			dosPuntos[i].setFont(new Font("Default",1,18));
 		}
 		
-		creaTresColumnas(labelsInfo[0],"Serie",dosPuntos[0],camposTextoInfo[0]);
+		creaFila(labelsInfo[0],"Serie",dosPuntos[0],camposTextoInfo[0]);
 		
-		creaTresColumnas(labelsInfo[1],"Desc",dosPuntos[1],camposTextoInfo[1]);
+		creaFila(labelsInfo[1],"Desc",dosPuntos[1],camposTextoInfo[1]);
 		
-		creaTresColumnas(labelsInfo[2],"Valor base",dosPuntos[2],camposTextoInfo[2]);
+		creaFila(labelsInfo[2],"Valor base",dosPuntos[2],camposTextoInfo[2]);
 		
-		creaTresColumnas(labelsInfo[3],"Valor hora",dosPuntos[3],camposTextoInfo[3]);
+		creaFila(labelsInfo[3],"Valor hora",dosPuntos[3],camposTextoInfo[3]);
 		
 		labelsInfo[4].setText("Estado");
 				
@@ -203,15 +223,19 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		
 		//------------------------------------------------------------------
 		
-		creaTresColumnas(labelsInfo[5],"Cliente",dosPuntos[5],camposTextoInfo[4]);
+		creaFila(labelsInfo[5],"Cliente",dosPuntos[5],camposTextoInfo[4]);
 		
-		creaTresColumnas(labelsInfo[6],"Inicio",dosPuntos[6],camposTextoInfo[5]);
+		creaFila(labelsInfo[6],"Inicio",dosPuntos[6],camposTextoInfo[5]);
 		
 		panelInfo.setVisible(true);
 		
 		mainPanel.add(panelInfoFlow); 
 	}
 	
+	/**
+	 * Este metodo actualizara la informacion del panelInfo con los atributos del Item pasado por el parametro.
+	 * @param s Se mostrará la informacion de este Item
+	 */
 	public void  actualizaPanel_Info(Item s) {
 		camposTextoInfo[0].setText(" "+s.getItemId());
 		camposTextoInfo[1].setText(" "+s.getItemDescription());
@@ -233,6 +257,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Este metodo creará el panel que se encarga de mostrar las Boletas de los arriendo de los Items.
+	 */
 	public void creaPanelBoletas() {
 		panelBoletas.setLayout(new BorderLayout());
 		panelBoletas.setBackground(Color.WHITE);
@@ -254,10 +281,17 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		mainPanel.add(panelBoletas);
 	}
 	
+	/**
+	 * Este metodo actualizara el panel que muestra las Boletas para dar a conocer cuales Items fueron arrendados, con las horas exactas de inicio y fin
+	 * junto al precio neto y el cliente que hizo el pedido.
+	 */
 	public void actualizaPanelBoletas(){
 		listModel.addElement(itemActual.devolver());
 	}
 	
+	/**
+	 * Este metodo creará el panel que tiene los botones de Exportar Boletas y el de Salir de la interfaz 
+	 */
 	public void creaPanelExp_Exit() {
 		panelExport_Exit.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panelExport_Exit.setOpaque(false);
@@ -285,16 +319,17 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		mainPanel.add(panelExport_Exit);
 	}
 	
+	/**
+	 * Este metodo se encargara de recorrer todas las boletas que hay e ir exportandolas como txt una por una
+	 */
 	public void exportarBoletas() {
 		Boleta boleta;		
 		String nombreArchivo;
-		int indiceSubString;
 		for (int i = 0; i < listModel.getSize();i++) {
 			boleta = listModel.getElementAt(i);
 			FileWriter fw;
 			BufferedWriter bw;
 			nombreArchivo = boleta.toString();
-			indiceSubString = nombreArchivo.indexOf(" ");
 			nombreArchivo = nombreArchivo.substring(0,nombreArchivo.indexOf(':')-2);
 			nombreArchivo =  nombreArchivo.replaceAll("/","-");
 			nombreArchivo = nombreArchivo.replaceAll(" ","");
@@ -312,6 +347,9 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Este metodo creara la ventana emergente correspondiente al ingreso del nombre el cliente
+	 */
 	public void creaVentanaEmergente() {		
 		ventanaEmergente.setSize(300,200);
 		ventanaEmergente.setLocationRelativeTo(sistema);
@@ -354,12 +392,22 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 		ventanaEmergente.setVisible(false);		
 	}
 	
+	/**
+	 * Este metodo hara que se muestre en pantalla la ventana que permitira el ingreso del nombre del cliente que quiere arrendar un Item
+	 * @param s Item actual que se quiere arrendar
+	 */
 	public void muestraVentanaEmergente(Item s) {
 		labelVentanaEmergente.setText("Arrendar item "+s.getItemId());
 		ventanaEmergente.setVisible(true);
 		cliente.setText("");
 	}
 
+	/**
+	 * Sobreescritura del metodo actionPerformed que se encargara de detectar cada interaccion que se realiza en la interfaz y que
+	 * respondera de diferentes formas dependiendo del tipo de objeto con el cual se interactua.
+	 * 
+	 * @param e Interaccion que ocurrio en la Interfaz
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() instanceof JButton) {
@@ -398,6 +446,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 			}
 		}
 	}
+	
 	
 	public static SistemaArriendo getInstance() {
 		return sistema;

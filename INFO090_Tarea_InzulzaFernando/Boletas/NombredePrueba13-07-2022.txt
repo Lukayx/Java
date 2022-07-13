@@ -1,12 +1,12 @@
 ------- Boleta de Arriendo --------
 -----------------------------------
 Boleta generada el: 
-12/07/2022 10:57
+13/07/2022 03:06
 -----------------------------------
-Cliente: Fernando
+Cliente: Nombre de Prueba
 -----------------------------------
-Arriendo inicio : 12/07/2022 10:57
-Arriendo fin    : 12/07/2022 10:57
+Arriendo inicio : 13/07/2022 03:06
+Arriendo fin    : 13/07/2022 03:06
 Item            : B001
 
 neto            : 3000 pesos
