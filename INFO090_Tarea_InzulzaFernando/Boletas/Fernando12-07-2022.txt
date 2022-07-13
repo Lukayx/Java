@@ -1,0 +1,15 @@
+------- Boleta de Arriendo --------
+-----------------------------------
+Boleta generada el: 
+12/07/2022 10:57
+-----------------------------------
+Cliente: Fernando
+-----------------------------------
+Arriendo inicio : 12/07/2022 10:57
+Arriendo fin    : 12/07/2022 10:57
+Item            : B001
+
+neto            : 3000 pesos
+neto + impuesto : 3570 pesos
+
+ -------- Vuelva Pronto!! ---------

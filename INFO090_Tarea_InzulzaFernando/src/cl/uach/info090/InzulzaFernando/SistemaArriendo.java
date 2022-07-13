@@ -12,11 +12,15 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Iterator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * <p>Clase Main la cual tiene la Interfaz Grafica de Arriendo con todos los atributos y metodos necesarios para estar funcional.
+ *
+ * @author Fernando Inzulza
+ */
 public class SistemaArriendo extends JFrame implements ActionListener{
 	
 	private static SistemaArriendo sistema = new SistemaArriendo();
@@ -32,7 +36,7 @@ public class SistemaArriendo extends JFrame implements ActionListener{
 	private JPanel panelBoletas = new JPanel();
 	private JPanel panelExport_Exit = new JPanel();
 	
-	private JDialog ventanaEmergente = new JDialog(this,"asdad",true);
+	private JDialog ventanaEmergente = new JDialog(this,"",true);
 	
 	private CreadorBoletaCL C_Boleta = new CreadorBoletaCL();
 	

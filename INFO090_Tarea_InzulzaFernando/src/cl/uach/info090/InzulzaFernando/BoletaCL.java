@@ -1,12 +1,17 @@
 package cl.uach.info090.InzulzaFernando;
 
+/**
+ * <p>Esta clase hereda y sobreescribe los metodos de la clase Boleta además de también sobreescribir el metodo toString()
+ * <p>También tiene atributos que contienen la informacion de arriendo del item
+ * @author Fernando Inzulza
+ */
 public class BoletaCL extends Boleta{
 	private String fecha, cliente, detalle; 
 	private double neto, impuesto, valorTotal;
 	
 	/**
 	 *  <p>
-	 *  @return Devuelve un String con la informacion sobre el arriendo
+	 *  @return Devuelve un String con la informacion sobre el arriendo (Fecha de inicio y termino)
 	 */
 	@Override
 	public String toString() {

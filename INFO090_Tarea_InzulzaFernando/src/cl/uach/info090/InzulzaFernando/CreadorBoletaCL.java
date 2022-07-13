@@ -1,13 +1,17 @@
 package cl.uach.info090.InzulzaFernando;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
+/**
+ * <p> Los objetos de esta clase solo tendrán un solo metodo, el cual permite crear el objeto Boleta en formato Chileno
+ * @author Fernando Inzulza
+ */
 public class CreadorBoletaCL implements CreadorBoleta{
 	private BoletaCL boleta;
 	
 	/**
 	 * Este metodo creará un objeto Boleta que tendrá el contenido de lo que será exportado, ademas de los datos correspondientes al arriendo como atributos.
+	 * 
+	 * @param cliente Nombre del cliente que arrendó el item
+	 * @param detalle Tiene informacion del arriendo
+	 * @param neto Precio total el cual se obtiene del precioBase mas el precio por hora multiplicado por las horas que se arrendó
 	 * 
 	 */
 	public Boleta generarBoleta(String cliente, String detalle, double neto) {

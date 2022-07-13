@@ -5,6 +5,11 @@ import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 
+/**
+ * <p> Clase Abstracta que representa un Item arrendable, el cual tiene los metodos necesarios para ser arrendado, dar a conocer el estado del item 
+ *  y devolver la boleta correspondiente al arriendo
+ * @author Fernando Inzulza
+ */
 public abstract class Item extends JButton implements Arrendable{	
 	private String itemId, itemDescription, fechaArriendo="",cliente="";
 	private double valorHora, valorBase;
@@ -39,6 +44,9 @@ public abstract class Item extends JButton implements Arrendable{
 	}
 
 	/**
+	 * Este metodo calculara el tiempo que arrendó el item y en base a eso calculara el precio neto, luego mediante el metodo generarBoleta del 
+	 * objeto de la clase CreadorBoleta entregará la infomacion necesaria por los parametros para devolver la Boleta correspondiene al arriendo.
+	 * 
 	 * @return Devuelve un objeto tipo Boleta que tiene todos los datos correspondientes al arriendo.
 	 */
 	@Override
